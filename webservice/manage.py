@@ -5,11 +5,17 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.script import Manager, Server
 from flask.ext.migrate import Migrate, MigrateCommand
 
+from cidadeiluminada import base
 from cidadeiluminada import protocolos
 
 
-app = Flask(__name__)
-app.config.from_object('settings')
+def create_app(config=None):
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object('settings')
+    app.config.from_pyfile('settings_local.py', silent=True)
+    app.secret_key = app.config.get('SECRET_KEY')
+    base.init_app(app)
+    return app
 
 db = SQLAlchemy(app)
 
