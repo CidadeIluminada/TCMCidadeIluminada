@@ -75,3 +75,5 @@ proguard/
 *.ipr
 *.iws
 .idea/
+
+*.sublime-*
