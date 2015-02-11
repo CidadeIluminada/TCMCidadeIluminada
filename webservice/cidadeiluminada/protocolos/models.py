@@ -3,8 +3,9 @@ from __future__ import absolute_import
 
 from datetime import datetime
 
-from sqlalchemy import Model, Column
-from sqlalchemy.types import Integer, String, Datetime
+from flask.ext.sqlalchemy import Model
+from sqlalchemy import Column
+from sqlalchemy.types import Integer, String, DateTime
 
 
 class Protocolo(Model):
@@ -12,4 +13,4 @@ class Protocolo(Model):
     id = Column(Integer, primary_key=True)
     cod_protocolo = Column(String(255))
 
-    timestamp = Column(Datetime, default=datetime.now)
+    timestamp = Column(DateTime, default=datetime.now)
