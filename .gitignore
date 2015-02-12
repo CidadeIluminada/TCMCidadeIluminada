@@ -77,3 +77,4 @@ proguard/
 .idea/
 
 *.sublime-*
+.db
