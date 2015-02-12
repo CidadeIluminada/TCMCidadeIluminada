@@ -3,12 +3,13 @@ from __future__ import absolute_import
 
 from datetime import datetime
 
-from flask.ext.sqlalchemy import Model
 from sqlalchemy import Column
 from sqlalchemy.types import Integer, String, DateTime
 
+from cidadeiluminada.base import db
 
-class Protocolo(Model):
+
+class Protocolo(db.Model):
 
     id = Column(Integer, primary_key=True)
     cod_protocolo = Column(String(255))

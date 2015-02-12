@@ -1,12 +1,11 @@
 #coding=UTF-8
 
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.script import Manager, Server
 from flask.ext.migrate import Migrate, MigrateCommand
 
-from cidadeiluminada import base
-from cidadeiluminada import protocolos
+import cidadeiluminada
+from cidadeiluminada.base import db
 
 
 def create_app(config=None):
@@ -14,11 +13,10 @@ def create_app(config=None):
     app.config.from_object('settings')
     app.config.from_pyfile('settings_local.py', silent=True)
     app.secret_key = app.config.get('SECRET_KEY')
-    base.init_app(app)
+    cidadeiluminada.init_app(app)
     return app
 
-db = SQLAlchemy(app)
-
+app = create_app()
 migrate = Migrate(app, db)
 
 manager = Manager(app)
