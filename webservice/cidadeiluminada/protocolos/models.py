@@ -6,10 +6,10 @@ from datetime import datetime
 from sqlalchemy import Column
 from sqlalchemy.types import Integer, String, DateTime
 
-from cidadeiluminada.base import db
+from cidadeiluminada.base import db, JSONSerializationMixin
 
 
-class Protocolo(db.Model):
+class Protocolo(db.Model, JSONSerializationMixin):
 
     id = Column(Integer, primary_key=True)
     cod_protocolo = Column(String(255))

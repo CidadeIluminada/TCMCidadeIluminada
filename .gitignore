@@ -78,3 +78,5 @@ proguard/
 
 *.sublime-*
 *.db
+
+*/tmp/*
