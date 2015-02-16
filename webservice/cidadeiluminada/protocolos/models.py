@@ -15,3 +15,5 @@ class Protocolo(db.Model):
     cod_protocolo = Column(String(255))
 
     timestamp = Column(DateTime, default=datetime.now)
+
+    filename = Column(String(255))
