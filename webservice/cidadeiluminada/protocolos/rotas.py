@@ -45,7 +45,6 @@ def lista():
 def novo():
     if request.method == 'POST':
         cod_protocolo = request.form['cod_protocolo']
-        print cod_protocolo
         arquivo = request.files['file']
         if arquivo and _allowed_file(arquivo.filename):
             filename = secure_filename(arquivo.filename)
@@ -55,7 +54,6 @@ def novo():
                                   filename=filename)
             db.session.add(protocolo)
             db.session.commit()
-            #return redirect(url_for('.index'))
     return '''
     <!doctype html>
     <title>Novo protocolo</title>
@@ -73,3 +71,13 @@ def foto(protocolo_id):
     protocolo = Protocolo.query.filter_by(id=protocolo_id).first_or_404()
     return send_from_directory(current_app.config['UPLOAD_FOLDER'],
                                protocolo.filename)
+
+
+@bp.route('/<protocolo_id>/status/', methods=['POST'])
+def status(protocolo_id):
+    protocolo = Protocolo.query.filter_by(id=protocolo_id).first_or_404()
+    protocolo.status = request.json['status']
+    db.session.commit()
+    return jsonify({
+        'result': 'OK'
+    }), 200
