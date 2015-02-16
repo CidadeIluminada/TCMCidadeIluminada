@@ -13,7 +13,7 @@ class Protocolo(db.Model, JSONSerializationMixin):
 
     id = Column(Integer, primary_key=True)
     cod_protocolo = Column(String(255))
-    status = Column(String(255))
+    status = Column(String(255), default='NOVO')
 
     timestamp = Column(DateTime, default=datetime.now)
 

@@ -2,14 +2,14 @@
 from __future__ import absolute_import
 import os
 
-from flask import Blueprint, jsonify, request, current_app, redirect, url_for,\
-    send_from_directory, render_template, render_template_string
+from flask import Blueprint, jsonify, request, current_app,\
+    send_from_directory, render_template
 from werkzeug import secure_filename
 
 from cidadeiluminada.base import db
 from cidadeiluminada.protocolos.models import Protocolo
 
-bp = Blueprint('protocolos', __name__)
+bp = Blueprint('protocolos', __name__, template_folder='templates')
 
 
 def init_app(app, url_prefix='/protocolos'):
@@ -23,16 +23,9 @@ def _allowed_file(filename):
 
 @bp.route('/')
 def index():
-    template = '''
-    {%  for protocolo in protocolos %}
-        {{ protocolo.id }} <br>
-        {{ protocolo.cod_protocolo }} <br>
-        {{ protocolo.timestamp }} <br>
-        <a href={{ url_for('.foto', protocolo=protocolo.id) }}> Arquivo</a>
-        <hr>
-    {%  endfor %}
-    '''
-    return render_template_string(template, protocolos=Protocolo.query.all())
+    status = ['NOVO', 'INVALIDO', 'PROCESSADO']
+    return render_template('protocolos.html', protocolos=Protocolo.query.all(),
+                           status=status)
 
 
 @bp.route('/protocolos.json')
@@ -76,7 +69,7 @@ def foto(protocolo_id):
 @bp.route('/<protocolo_id>/status/', methods=['POST'])
 def status(protocolo_id):
     protocolo = Protocolo.query.filter_by(id=protocolo_id).first_or_404()
-    protocolo.status = request.json['status']
+    protocolo.status = request.form['status']
     db.session.commit()
     return jsonify({
         'result': 'OK'
