@@ -1,3 +1,10 @@
+Template do Yii 2 utilizado de base para criar o site
+===================================
+
+O Framework frontend utilizado é o Twitter Bootstrap3 enquanto que o backend será o Yii que exibirá os dados vindos do webservice através da API Rest
+
+
+
 Yii 2 Advanced Application Template
 ===================================
 
