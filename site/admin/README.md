@@ -2,6 +2,33 @@
 
 O Framework frontend utilizado é o Twitter Bootstrap3 enquanto que o backend será o Yii que exibirá os dados vindos do webservice através da API Rest
 
+
+Nota: para utilizar este código é necessário utilizar o composer para instalar as dependências com o comando composer install
+
+como instalar o composer no Ubuntu:
+
+Install Composer
+https://getcomposer.org/doc/00-intro.md#globally (link is external)
+
+Ensure the Curl dependency is installed.
+sudo apt-get -y install curl
+
+Download the Composer installer and pass it to php.
+sudo curl -sS https://getcomposer.org/installer (link is external) | php
+
+Place the composer executable in a directory included in the system PATH.
+sudo mv composer.phar /usr/local/bin/composer
+
+Ensure {USER} has ownership of files installed in their home directory.
+sudo chown -hR {USER}:{USER} ~/
+
+Make sure Composer's global bin directory is on the system PATH.
+
+sudo sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
+source $HOME/.bashrc
+
+
+
 ## Mockup
 
 Feito em @moqups.com
@@ -14,7 +41,7 @@ http://goo.gl/gJMkiY
 - Login de usuário
 - Template Bootstrap
 - Página inicial
-
+- integração com Rest
 
 Yii 2 Advanced Application Template
 ===================================
