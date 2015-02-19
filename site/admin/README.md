@@ -27,8 +27,6 @@ Make sure Composer's global bin directory is on the system PATH.
 sudo sed -i '1i export PATH="$HOME/.composer/vendor/bin:$PATH"' $HOME/.bashrc
 source $HOME/.bashrc
 
-
-
 ## Mockup
 
 Feito em @moqups.com
