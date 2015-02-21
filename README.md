@@ -9,9 +9,16 @@
 
 ## Baixando e Instalando aplicacao
 
+@ http://roundhere.net/journal/virtualenv-ubuntu-12-10/
+- inserir . /usr/local/bin/virtualenvwrapper.sh   no fim de ~./bashrc
 - $ git clone https://github.com/HardDiskD/TCMCidadeIluminada
 - $ cd TCMCidadeIluminada
 - $ pip install -r requirement.txt
 - $ python manage.py db upgrade
 - $ python manage.py runserver
 - ir para http://localhost:5000/protocolos
+- 
+## Comandos úteis virtualenv
+
+- $ mkvirtualenv myawesomeproject     cria ambiente virtual 
+- $ workon myawesomeproject           entra no ambiente virtual
