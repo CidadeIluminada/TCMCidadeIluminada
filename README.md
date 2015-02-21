@@ -17,7 +17,7 @@
 - $ python manage.py db upgrade
 - $ python manage.py runserver
 - ir para http://localhost:5000/protocolos
-- 
+
 ## Comandos úteis virtualenv
 
 - $ mkvirtualenv myawesomeproject     cria ambiente virtual 
