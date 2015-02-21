@@ -9,7 +9,7 @@
 
 ## Baixando e Instalando aplicacao
 
-@ http://roundhere.net/journal/virtualenv-ubuntu-12-10/
+- @ http://roundhere.net/journal/virtualenv-ubuntu-12-10/
 - inserir . /usr/local/bin/virtualenvwrapper.sh   no fim de ~./bashrc
 - $ git clone https://github.com/HardDiskD/TCMCidadeIluminada
 - $ cd TCMCidadeIluminada
