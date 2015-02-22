@@ -16,9 +16,16 @@
 - $ pip install -r requirement.txt
 - $ python manage.py db upgrade
 - $ python manage.py runserver
-- ir para http://localhost:5000/protocolos
+
+
+## Rotas da aplicacao
+- http://localhost:5000/protocolos
+- http://localhost:5000/protocolos/novo
+- http://localhost:5000/protocolos/protocolos.json
+
 
 ## Comandos úteis virtualenv
 
 - $ mkvirtualenv myawesomeproject     cria ambiente virtual 
 - $ workon myawesomeproject           entra no ambiente virtual
+
