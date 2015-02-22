@@ -47,16 +47,7 @@ def novo():
                                   filename=filename)
             db.session.add(protocolo)
             db.session.commit()
-    return '''
-    <!doctype html>
-    <title>Novo protocolo</title>
-    <h1>Novo protocolo</h1>
-    <form action="" method=post enctype=multipart/form-data>
-        <input type=text name=cod_protocolo><br>
-        <input type=file name=file><br>
-        <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template('novo.html')
 
 
 @bp.route('/<protocolo_id>/foto/')
