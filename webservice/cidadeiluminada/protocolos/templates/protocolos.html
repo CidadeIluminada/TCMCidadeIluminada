@@ -9,10 +9,16 @@
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 1</a></li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
+        {%- for item in current_menu.children recursive -%}
+        <li>
+          <a href="{{ item.url}}">{{ item.text }}</a>
+          {%- if item.children -%}
+          <ul>
+            {{ loop(item.children) }}
+          </ul>
+          {%- endif -%}
+        </li>
+        {%- endfor -%}
       </ul>
     </div>
   </div>
