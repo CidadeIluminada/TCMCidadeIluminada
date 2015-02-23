@@ -12,7 +12,11 @@
 - @ http://roundhere.net/journal/virtualenv-ubuntu-12-10/
 - inserir . /usr/local/bin/virtualenvwrapper.sh   no fim de ~./bashrc
 - $ git clone https://github.com/HardDiskD/TCMCidadeIluminada
-- $ cd TCMCidadeIluminada
+- $ cd TCMCidadeIluminada/webserver
+- $ mkdir ~/.virtualenvs
+- $ export WORKON_HOME=~/.virtualenvs
+- $ . /usr/local/bin/virtualenvwrapper.sh
+- $ mkvirtualenv myawesomeproject
 - $ pip install -r requirement.txt
 - $ python manage.py db upgrade
 - $ python manage.py runserver
