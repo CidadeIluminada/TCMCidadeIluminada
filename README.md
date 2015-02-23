@@ -15,7 +15,8 @@
 - $ cd TCMCidadeIluminada/webserver
 - $ mkdir ~/.virtualenvs
 - $ export WORKON_HOME=~/.virtualenvs
-- $ . /usr/local/bin/virtualenvwrapper.sh
+- $ echo '. /usr/local/bin/virtualenvwrapper.sh' >> ~/.bashrc 
+- $ echo '. /usr/local/bin/virtualenvwrapper.sh' >> ~/.zshrc
 - $ mkvirtualenv myawesomeproject
 - $ pip install -r requirement.txt
 - $ python manage.py db upgrade
