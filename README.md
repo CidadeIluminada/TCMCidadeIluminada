@@ -1,8 +1,5 @@
 # TCMCidadeIluminada
 
-## Instalação do ambiente de desenvolvimento no Windows
-lol
-
 ## Instalação do ambiente de desenvolvimento no Ubuntu
 1. Baixe o arquivo `install.sh` da raíz do repositório.
 1. Abra um terminal.
@@ -24,7 +21,7 @@ Agora, no canto esquerdo do terminal deve estar escrito `(cidadeiluminada)`, iss
 
 Entretanto, o git e o banco estão desconfigurados. Vamos começar com o git, que é mais fácil.
 
-## Configurando o git e o GitHub
+### Configurando o git e o GitHub
 [Guia oficial](https://help.github.com/articles/set-up-git/)
 
 Para configurar o git é simples. No terminal, digite:
@@ -41,10 +38,10 @@ O SSH é mais chato:
 1. Digite no terminal `ssh-add ~/.ssh/id_rsa`
 1. Digite no terminal `gedit /.ssh/id_rsa.pub`. Um editor de texto deve abrir. Copie tudo.
 1. [Siga os passos para adicionar a senha na conta do GitHub](https://help.github.com/articles/generating-ssh-keys/#step-3-add-your-ssh-key-to-your-account)
-1. A partir daqui a senha deve estar funcionando.[ Teste seguindo o **Step 4** do guia do GitHub](https://help.github.com/articles/generating-ssh-keys/#step-4-test-everything-out)
+1. A partir daqui o ssh deve estar funcionando.[ Teste seguindo o **Step 4** do guia do GitHub](https://help.github.com/articles/generating-ssh-keys/#step-4-test-everything-out)
 
 
-## Banco de dados (PostgreSQL)
+### Banco de dados (PostgreSQL)
 
 Agora não é bom copiar os comandos. Digite do jeito que estão aparecendo aqui:
 
@@ -77,7 +74,7 @@ Recarregue o postgres usando `sudo service postgres reload`.
 Finalmente, rode o pgAdmin3 usando `pgadmin3` e configure uma nova conexão usando o nome e senha de seu usuario. Aproveite e crie um banco de dados chamado `cidadeiluminada`
 
 
-## Baixando e Instalando a aplicação web
+### Baixando e Instalando a aplicação web
 
 Depois de uma excitante viagem, finalmente podemos instalar a aplicação:
 
@@ -94,10 +91,21 @@ Se deu tudo certo, o seu terminal vai ter algo do tipo
 
 aparecendo.
 
-## Instalando o PyCharm
+### Instalando o PyCharm
 [Baixe aqui](https://download.jetbrains.com/python/pycharm-community-4.0.4.tar.gz) e descompacte para qualquer lugar.
 
 Para rodar, entre na pasta que extraiu e digite:
 
 1. `cd bin`
 1. `sh pycharm.sh`
+
+## Instalação do ambiente de desenvolvimento no Windows
+lol
+
+##Configurações de ambiente
+
+O arquivo `settings.py` guarda várias várias variáveis de configuração de ambiente. Neste arquivo estão guardado todos os valores padrões e de exemplo.
+
+Para configurar o seu ambiente local, crie uma pasta chamada `instance` na pasta onde está o `manage.py`, e dentro dela crie um arquivo chamado `settings_local.py`.
+
+O `settings_local.py` será lido depois do settings de fora, então para configurar localmente, somente substitua as variáveis em **maiúsculo** para os valores desejados.
