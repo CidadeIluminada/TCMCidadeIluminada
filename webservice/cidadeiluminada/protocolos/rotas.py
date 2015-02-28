@@ -4,6 +4,7 @@ import os
 
 from flask import Blueprint, jsonify, request, current_app,\
     send_from_directory, render_template
+from flask.ext.login import login_required
 from werkzeug import secure_filename
 
 from cidadeiluminada.base import db
@@ -23,6 +24,7 @@ def _allowed_file(filename):
 
 
 @bp.route('/')
+@login_required
 def index():
     status = ['NOVO', 'INVALIDO', 'PROCESSADO']
     return render_template('protocolos.html', protocolos=Protocolo.query.all(),
