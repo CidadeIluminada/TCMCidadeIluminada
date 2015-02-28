@@ -109,3 +109,5 @@ O arquivo `settings.py` guarda várias várias variáveis de configuração de a
 Para configurar o seu ambiente local, crie uma pasta chamada `instance` na pasta onde está o `manage.py`, e dentro dela crie um arquivo chamado `settings_local.py`.
 
 O `settings_local.py` será lido depois do settings de fora, então para configurar localmente, somente substitua as variáveis em **maiúsculo** para os valores desejados.
+
+**Sobre a conexão do Postgres:** Do modo que foi configurado nesse arquivo, o campo `username` deve ficar vazio. Isso pode ou não dar problemas. Vou perguntar para quem sabe e atualizar isso aqui. Eu *acho* que não tem problema porque essas instruções são só para máquinas de desenvolvimento.
