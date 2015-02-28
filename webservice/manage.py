@@ -34,6 +34,17 @@ def index():
     return redirect(url_for('protocolos.index'))
 
 
+@app.context_processor
+def menu_items():
+    return {
+        'menu_items': [
+            (u'Protocolos', 'protocolos.index'),
+            (u'(ALPHA) Novo protocolo', 'protocolos.novo_pagina'),
+            (u'Sair', 'auth.logout'),
+        ]
+    }
+
+
 @manager.command
 def criar_usuario(username, password, role='admin'):
     auth.create_user(username, password, role)

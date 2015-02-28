@@ -11,8 +11,13 @@
         <header>
             <nav class="navbar">
                 <div class="navbar-inner">
-                    <a class="brand" href="#">cidadeIluminada</a>
+                    <a class="brand" href="{{ url_for('index') }}">Cidade Iluminada</a>
                     <ul class="nav">
+                        {% for title, _endpoint in menu_items %}
+                        <li>
+                            <a {% if request.endpoint == _endpoint %} class="active" {% endif %} href="{{ url_for(_endpoint) }}">{{ title }}</a>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </nav>

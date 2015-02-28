@@ -89,8 +89,7 @@ def logout():
     identity_changed.send(current_app._get_current_object(),
                           identity=AnonymousIdentity())
     logout_user()
-    response = redirect(request.args.get('next') or url_for('index'))
-    return response
+    return redirect(request.args.get('next') or url_for('index'))
 
 
 def create_user(username, password, role=None):
