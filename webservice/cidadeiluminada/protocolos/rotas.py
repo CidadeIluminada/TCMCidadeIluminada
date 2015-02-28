@@ -32,6 +32,7 @@ def index():
 
 
 @bp.route('/protocolos.json')
+@login_required
 def lista():
     protocolos = Protocolo.query.all()
     return jsonify(payload=protocolos)
@@ -55,11 +56,13 @@ def novo():
 
 
 @bp.route('/novo/form/')
+@login_required
 def novo_pagina():
     return render_template('novo.html')
 
 
 @bp.route('/<protocolo_id>/foto/')
+@login_required
 def foto(protocolo_id):
     protocolo = Protocolo.query.filter_by(id=protocolo_id).first_or_404()
     return send_from_directory(current_app.config['UPLOAD_FOLDER'],
@@ -67,6 +70,7 @@ def foto(protocolo_id):
 
 
 @bp.route('/<protocolo_id>/status/', methods=['POST'])
+@login_required
 def status(protocolo_id):
     protocolo = Protocolo.query.filter_by(id=protocolo_id).first_or_404()
     protocolo.status = request.form['status']

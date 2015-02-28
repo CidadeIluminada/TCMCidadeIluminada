@@ -26,21 +26,9 @@ def load_user(user_id):
     return User.query.filter_by(username=user_id).first()
 
 
-@login_manager.request_loader
-def load_user_from_request(request):
-    # TODO: Implementar quando precisar de api_key
-    return None
-    #api_key = request.args.get('api_key')
-    #if api_key:
-    #    user = User.query.filter_by(api_key=api_key).first()
-    #    if user:
-    #        return user
-
-
 @login_manager.unauthorized_handler
 def handle_unauthorized():
     if request.method == 'POST':
-        # retorna 403 se o método for POST
         abort(403)
     elif request.method == 'GET':
         return redirect(url_for('auth.login'))
