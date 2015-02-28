@@ -73,7 +73,7 @@ def foto(protocolo_id):
 @login_required
 def status(protocolo_id):
     protocolo = Protocolo.query.filter_by(id=protocolo_id).first_or_404()
-    protocolo.status = request.form['status']
+    protocolo.status = request.json['status']
     db.session.commit()
     return jsonify({
         'result': 'OK'
