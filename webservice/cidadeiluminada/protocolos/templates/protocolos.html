@@ -2,63 +2,64 @@
 {% block title %}Protocolos{% endblock %}
 
 {% block content %}
-<div class="hero-unit">
-    <h1>Cidade Iluminada - Painel Administrativo</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco.</p>
+<div class="container-fluid row-fluid">
+    <div class="span2">
+        Sidebar
+    </div>
+    <div class="span10">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        #ID
+                    </th>
+                    <th>
+                        Código
+                    </th>
+                    <th>
+                        Criação
+                    </th>
+                    <th>
+                        Foto
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for protocolo in protocolos %}
+                <tr>
+                    <td>
+                        {{ protocolo.id }}
+                    </td>
+                    <td>
+                        {{ protocolo.cod_protocolo }}
+                    </td>
+                    <td>
+                        {{ protocolo.timestamp }}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('.foto', protocolo_id=protocolo.id) }} ">Foto</a>
+                    </td>
+                    <td>
+                        {{ protocolo.status }}
+                    </td>
+                    <td>
+                        <form action="{{ url_for('.status', protocolo_id=protocolo.id) }}" method="POST">
+                            <select name="status">
+                                {% for status_ in status %}
+                                <option value="{{ status_ }}" {% if status_ == protocolo.status %} selected="selected" {% endif %}> {{ status_ }} </option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit">Mudar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                #ID
-            </th>
-            <th>
-                Código
-            </th>
-            <th>
-                Criação
-            </th>
-            <th>
-                Foto
-            </th>
-            <th>
-                Status
-            </th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for protocolo in protocolos %}
-        <tr>
-            <td>
-                {{ protocolo.id }}
-            </td>
-            <td>
-                {{ protocolo.cod_protocolo }}
-            </td>
-            <td>
-                {{ protocolo.timestamp }}
-            </td>
-            <td>
-                <a href="{{ url_for('.foto', protocolo_id=protocolo.id) }} ">Foto</a>
-            </td>
-            <td>
-                {{ protocolo.status }}
-            </td>
-            <td>
-                <form action="{{ url_for('.status', protocolo_id=protocolo.id) }}" method="POST">
-                    <select name="status">
-                        {% for status_ in status %}
-                        <option value="{{ status_ }}" {% if status_ == protocolo.status %} selected="selected" {% endif %}> {{ status_ }} </option>
-                        {% endfor %}
-                    </select>
-                    <button type="submit">Mudar</button>
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
 {% endblock %}
