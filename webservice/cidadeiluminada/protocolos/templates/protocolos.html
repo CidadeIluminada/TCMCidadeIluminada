@@ -1,95 +1,64 @@
-{% extends "bootstrap/base.html" %}
-{% block title %}This is an example page{% endblock %}
-
-{% block navbar %}
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">cidadeIluminada</a>
-    </div>
-    <div>
-      <ul class="nav navbar-nav">
-        {%- for item in current_menu.children recursive -%}
-        <li>
-          <a href="{{ item.url}}">{{ item.text }}</a>
-          {%- if item.children -%}
-          <ul>
-            {{ loop(item.children) }}
-          </ul>
-          {%- endif -%}
-        </li>
-        {%- endfor -%}
-      </ul>
-    </div>
-  </div>
-</nav>
-{% endblock %}
+{% extends "base.html" %}
+{% block title %}Protocolos{% endblock %}
 
 {% block content %}
-
-<div class="container">
-  <div class="jumbotron">
+<div class="hero-unit">
     <h1>Cidade Iluminada - Painel Administrativo</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco.</p> 
-  </div>
-
- 
-  <div class=".table-striped">
-      <table class="table">
-            <thead>
-                <tr>
-                    <th>
-                        #ID
-                    </th>
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Criação
-                    </th>
-                    <th>
-                        Foto
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for protocolo in protocolos %}
-                <tr>
-                    <td>
-                        {{ protocolo.id }}
-                    </td>
-                    <td>
-                        {{ protocolo.cod_protocolo }}
-                    </td>
-                    <td>
-                        {{ protocolo.timestamp }}
-                    </td>
-                    <td>
-                        <a href="{{ url_for('.foto', protocolo_id=protocolo.id) }} ">Foto</a>
-                    </td>
-                    <td>
-                        {{ protocolo.status }}
-                    </td>
-                    <td>
-                        <form action="{{ url_for('.status', protocolo_id=protocolo.id) }}" method="POST">
-                            <select name="status">
-                                {% for status_ in status %}
-                                <option value="{{ status_ }}" {% if status_ == protocolo.status %} selected="selected" {% endif %}> {{ status_ }} </option>
-                                {% endfor %}
-                            </select>
-                            <button type="submit">Mudar</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        </div> <!-- end table wrap -->
-    </div> <!-- end container -->
+    quis nostrud exercitation ullamco.</p>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                #ID
+            </th>
+            <th>
+                Código
+            </th>
+            <th>
+                Criação
+            </th>
+            <th>
+                Foto
+            </th>
+            <th>
+                Status
+            </th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for protocolo in protocolos %}
+        <tr>
+            <td>
+                {{ protocolo.id }}
+            </td>
+            <td>
+                {{ protocolo.cod_protocolo }}
+            </td>
+            <td>
+                {{ protocolo.timestamp }}
+            </td>
+            <td>
+                <a href="{{ url_for('.foto', protocolo_id=protocolo.id) }} ">Foto</a>
+            </td>
+            <td>
+                {{ protocolo.status }}
+            </td>
+            <td>
+                <form action="{{ url_for('.status', protocolo_id=protocolo.id) }}" method="POST">
+                    <select name="status">
+                        {% for status_ in status %}
+                        <option value="{{ status_ }}" {% if status_ == protocolo.status %} selected="selected" {% endif %}> {{ status_ }} </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Mudar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
