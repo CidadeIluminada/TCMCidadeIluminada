@@ -1,6 +1,7 @@
 #coding=UTF-8
+from __future__ import absolute_import
 
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask.ext.script import Manager, Server
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.assets import Environment
@@ -25,6 +26,11 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 manager.add_command('runserver', Server())
+
+
+@app.route('/')
+def index():
+    return redirect(url_for('protocolos.index'))
 
 if __name__ == '__main__':
     manager.run()
