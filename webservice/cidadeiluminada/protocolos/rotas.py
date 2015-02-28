@@ -37,19 +37,27 @@ def lista():
     return jsonify(payload=protocolos)
 
 
-@bp.route('/novo/', methods=['GET', 'POST'])
+@bp.route('/novo/', methods=['POST'])
 def novo():
     if request.method == 'POST':
         cod_protocolo = request.form['cod_protocolo']
         arquivo = request.files['file']
-        if arquivo and _allowed_file(arquivo.filename):
-            filename = secure_filename(arquivo.filename)
-            arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
-                                      filename))
-            protocolo = Protocolo(cod_protocolo=cod_protocolo,
-                                  filename=filename)
-            db.session.add(protocolo)
-            db.session.commit()
+        if arquivo:
+            if _allowed_file(arquivo.filename):
+                filename = secure_filename(arquivo.filename)
+                arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
+                                          filename))
+                protocolo = Protocolo(cod_protocolo=cod_protocolo,
+                                      filename=filename)
+                db.session.add(protocolo)
+                db.session.commit()
+                return jsonify({'status': 'OK'}), 200
+            else:
+                return jsonify({'status': 'ERROR'}), 400
+
+
+@bp.route('/novo/form/')
+def novo_pagina():
     return render_template('novo.html')
 
 
