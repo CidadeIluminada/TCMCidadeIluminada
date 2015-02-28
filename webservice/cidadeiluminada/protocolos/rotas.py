@@ -9,7 +9,8 @@ from werkzeug import secure_filename
 from cidadeiluminada.base import db
 from cidadeiluminada.protocolos.models import Protocolo
 
-bp = Blueprint('protocolos', __name__, template_folder='templates')
+bp = Blueprint('protocolos', __name__, template_folder='templates',
+               static_folder='static')
 
 
 def init_app(app, url_prefix='/protocolos'):

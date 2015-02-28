@@ -7,6 +7,7 @@ from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.assets import Environment
 
 import cidadeiluminada
+from cidadeiluminada import auth
 from cidadeiluminada.base import db, AppJSONEncoder
 
 
@@ -31,6 +32,11 @@ manager.add_command('runserver', Server())
 @app.route('/')
 def index():
     return redirect(url_for('protocolos.index'))
+
+
+@manager.command
+def criar_usuario(username, password, role='admin'):
+    auth.create_user(username, password, role)
 
 if __name__ == '__main__':
     manager.run()
