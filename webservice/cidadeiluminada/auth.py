@@ -146,6 +146,12 @@ class User(db.Model, UserMixin, JSONSerializationMixin):
     def is_active(self):
         return True
 
+    @classmethod
+    def check_auth(cls, username, password):
+        password = make_secure_token(password)
+        return cls.query.filter_by(username=username, password=password) \
+            .first()
+
 
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -7,7 +7,7 @@
         {% endblock %}
     </head>
     <body>
-        {% if current_user and not current_user.is_anonymous %}
+        {% if current_user and not current_user.is_anonymous() %}
         <header>
             <nav class="navbar">
                 <div class="navbar-inner">
