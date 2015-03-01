@@ -25,11 +25,11 @@ class Protocolo(db.Model, JSONSerializationMixin):
     def trim_cep(self, key, value):
         return value.replace('-', '')
 
-    cidade = Column(Text)
     estado = Column(String(2))
+    cidade = Column(Text)
     bairro = Column(Text)
     logradouro = Column(Text)
     numero = Column(Text)
 
     def has_full_address(self):
-        return False
+        return self.estado and self.cidade and self.bairro and self.logradouro

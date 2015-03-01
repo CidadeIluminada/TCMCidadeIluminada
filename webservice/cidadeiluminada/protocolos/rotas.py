@@ -51,6 +51,7 @@ def novo():
     cod_protocolo = request.form['cod_protocolo']
     arquivo = request.files['file']
     cep = request.form['cep']
+    estado = request.form.get('estado')
     cidade = request.form.get('cidade')
     bairro = request.form.get('bairro')
     logradouro = request.form.get('logradouro')
@@ -61,7 +62,8 @@ def novo():
                                   filename))
         protocolo = Protocolo(cod_protocolo=cod_protocolo, cep=cep,
                               logradouro=logradouro, filename=filename,
-                              bairro=bairro, numero=numero, cidade=cidade)
+                              bairro=bairro, numero=numero, cidade=cidade,
+                              estado=estado)
         if not protocolo.has_full_address():
             endereco = postmon.get_by_cep(protocolo.cep)
             protocolo.estado = endereco['estado']
