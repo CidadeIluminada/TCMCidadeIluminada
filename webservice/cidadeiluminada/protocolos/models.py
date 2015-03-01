@@ -26,8 +26,9 @@ class Protocolo(db.Model, JSONSerializationMixin):
         return value.replace('-', '')
 
     cidade = Column(Text)
+    estado = Column(String(2))
     bairro = Column(Text)
-    rua = Column(Text)
+    logradouro = Column(Text)
     numero = Column(Text)
 
     def has_full_address(self):

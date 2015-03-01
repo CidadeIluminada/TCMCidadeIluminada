@@ -53,17 +53,21 @@ def novo():
     cep = request.form['cep']
     cidade = request.form.get('cidade')
     bairro = request.form.get('bairro')
-    rua = request.form.get('rua')
+    logradouro = request.form.get('logradouro')
     numero = request.form.get('numero')
     if _allowed_file(arquivo.filename):
         filename = secure_filename(arquivo.filename)
         arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                                   filename))
-        protocolo = Protocolo(cod_protocolo=cod_protocolo, cep=cep, rua=rua,
-                              filename=filename, bairro=bairro, numero=numero,
-                              cidade=cidade)
+        protocolo = Protocolo(cod_protocolo=cod_protocolo, cep=cep,
+                              logradouro=logradouro, filename=filename,
+                              bairro=bairro, numero=numero, cidade=cidade)
         if not protocolo.has_full_address():
-            pass
+            endereco = postmon.get_by_cep(protocolo.cep)
+            protocolo.estado = endereco['estado']
+            protocolo.cidade = endereco['cidade']
+            protocolo.bairro = endereco['bairro']
+            protocolo.logradouro = endereco['logradouro']
         db.session.add(protocolo)
         db.session.commit()
         return jsonify({'status': 'OK'}), 200

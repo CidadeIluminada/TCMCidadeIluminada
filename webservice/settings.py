@@ -10,3 +10,5 @@ SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://user:password@localhost:port/ci
 UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'tmp')
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg'])
+
+POSTMON_URL = 'http://api.postmon.com.br/v1/cep/'
