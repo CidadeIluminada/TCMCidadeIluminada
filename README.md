@@ -85,14 +85,15 @@ Vamos agora instalar a aplicação em python:
 1. `cd TCMCidadeIluminada` (se você ainda não entrou nessa pasta)
 1. `sh install-cidadeiluminada.sh`
 
-crei o usuário da página de administração na raiz do webservices:
-`python manage.py criar_usuario admin admin` 
 
 Se deu tudo certo, o seu terminal vai ter algo do tipo
 
 `Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
 
 aparecendo.
+
+Por fim, crie o usuário padrão: `python manage.py criar_usuario admin admin`
+
 
 ### Instalando o PyCharm
 [Baixe aqui](https://download.jetbrains.com/python/pycharm-community-4.0.4.tar.gz) e descompacte para qualquer lugar.
@@ -109,7 +110,7 @@ lol
 
 O arquivo `settings.py` guarda várias várias variáveis de configuração de ambiente. Neste arquivo estão guardado todos os valores padrões e de exemplo.
 
-Para configurar o seu ambiente local, crie uma pasta chamada `instance` na pasta onde está o `manage.py`, e dentro dela crie um arquivo chamado `settings_local.py`. A connection string do Postgres deve ser configurada no `settings_local.py`. 
+Para configurar o seu ambiente local, crie uma pasta chamada `instance` na pasta onde está o `manage.py`, e dentro dela crie um arquivo chamado `settings_local.py`. A connection string do Postgres deve ser configurada no `settings_local.py`.
 
 **Somente o arquivo `settings_local.py` deve ser alterado, e no arquivo `settings.py` ficam somente os exemplos de chave/valor.**
 
