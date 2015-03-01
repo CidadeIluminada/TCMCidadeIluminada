@@ -4,7 +4,7 @@ from __future__ import absolute_import
 from datetime import datetime
 
 from sqlalchemy import Column
-from sqlalchemy.types import Integer, String, DateTime
+from sqlalchemy.types import Integer, String, DateTime, Text
 
 from cidadeiluminada.base import db, JSONSerializationMixin
 
@@ -18,3 +18,13 @@ class Protocolo(db.Model, JSONSerializationMixin):
     timestamp = Column(DateTime, default=datetime.now)
 
     filename = Column(String(255))
+
+    cep = Column(String(255))
+
+    @db.validates('cep')
+    def trim_cep(self, key, value):
+        return value.replace('-', '')
+
+    cidade = Column(Text)
+    bairro = Column(Text)
+    rua = Column(Text)
