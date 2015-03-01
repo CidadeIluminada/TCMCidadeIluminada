@@ -7,13 +7,33 @@
   <h1>Novo protocolo</h1>
   <form role="form" action="{{ url_for('.novo') }}" method="POST" enctype="multipart/form-data">
      <div class="form-group">
-        <label for="cod_protocolo">Descricao</label><br />
-        <input type="text" name="cod_protocolo"  required placeholder="Entre com a Descriçao">
+        <label for="cod_protocolo">Código protocolo</label><br />
+        <input type="text" name="cod_protocolo" required>
      </div>
      <div class="form-group">
         <label for="inputfile">Entrada Arquivo</label>
         <input type="file" name="file" required>
         <p class="help-block">Tamanho maximo do arquivo.</p>
+     </div>
+     <div class="form-group">
+        <label for="cep">CEP</label><br />
+        <input type="text" name="cep" required>
+     </div>
+     <div class="form-group">
+        <label for="cidade">Cidade</label><br />
+        <input type="text" name="cidade" required>
+     </div>
+     <div class="form-group">
+        <label for="bairro">Bairro</label><br />
+        <input type="text" name="bairro">
+     </div>
+     <div class="form-group">
+        <label for="rua">Rua</label><br />
+        <input type="text" name="rua">
+     </div>
+     <div class="form-group">
+        <label for="numero">Numero</label><br />
+        <input type="text" name="numero">
      </div>
      <button type="submit" value="Upload" class="btn btn-primary">Salvar</button>
   </form>

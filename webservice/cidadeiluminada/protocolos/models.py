@@ -28,3 +28,4 @@ class Protocolo(db.Model, JSONSerializationMixin):
     cidade = Column(Text)
     bairro = Column(Text)
     rua = Column(Text)
+    numero = Column(Text)

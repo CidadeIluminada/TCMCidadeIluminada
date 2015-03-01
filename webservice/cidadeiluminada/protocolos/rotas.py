@@ -27,7 +27,7 @@ def _allowed_file(filename):
 @login_required
 def index():
     status = ['NOVO', 'INVALIDO', 'PROCESSADO']
-    return render_template('protocolos.html', protocolos=Protocolo.query.all(),
+    return render_template('protocolos.html', protocolos=Protocolo.query.order_by(Protocolo.id).all(),
                            status=status)
 
 
@@ -41,7 +41,7 @@ def buscar_cod_protocolo():
 @bp.route('/protocolos.json')
 @login_required
 def lista():
-    protocolos = Protocolo.query.all()
+    protocolos = Protocolo.query.order_by(Protocolo.id).all()
     return jsonify(payload=protocolos)
 
 
@@ -49,12 +49,18 @@ def lista():
 def novo():
     cod_protocolo = request.form['cod_protocolo']
     arquivo = request.files['file']
-    if arquivo and _allowed_file(arquivo.filename):
+    cep = request.form['cep']
+    cidade = request.form.get('cidade')
+    bairro = request.form.get('bairro')
+    rua = request.form.get('rua')
+    numero = request.form.get('numero')
+    if _allowed_file(arquivo.filename):
         filename = secure_filename(arquivo.filename)
         arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                                   filename))
-        protocolo = Protocolo(cod_protocolo=cod_protocolo,
-                              filename=filename)
+        protocolo = Protocolo(cod_protocolo=cod_protocolo, cep=cep, rua=rua,
+                              filename=filename, bairro=bairro, numero=numero,
+                              cidade=cidade)
         db.session.add(protocolo)
         db.session.commit()
         return jsonify({'status': 'OK'}), 200
