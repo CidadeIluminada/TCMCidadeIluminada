@@ -31,6 +31,13 @@ def index():
                            status=status)
 
 
+@bp.route('/protocolo.json')
+def buscar_cod_protocolo():
+    cod_protocolo = request.args['cod_protocolo']
+    protocolo = Protocolo.query.filter_by(cod_protocolo=cod_protocolo).first()
+    return jsonify(payload=protocolo)
+
+
 @bp.route('/protocolos.json')
 @login_required
 def lista():
