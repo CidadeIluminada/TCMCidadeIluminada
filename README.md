@@ -85,6 +85,9 @@ Vamos agora instalar a aplicação em python:
 1. `cd TCMCidadeIluminada` (se você ainda não entrou nessa pasta)
 1. `sh install-cidadeiluminada.sh`
 
+crei o usuário da página de administração na raiz do webservices:
+`python manage.py criar_usuario admin admin` 
+
 Se deu tudo certo, o seu terminal vai ter algo do tipo
 
 `Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
