@@ -84,7 +84,6 @@ Vamos agora instalar a aplicação em python:
 
 1. `cd TCMCidadeIluminada` (se você ainda não entrou nessa pasta)
 1. `sh install-cidadeiluminada.sh`
-1. configure o arquivo `settings.py` com suas informações de login do postgres
 
 Se deu tudo certo, o seu terminal vai ter algo do tipo
 
@@ -107,7 +106,9 @@ lol
 
 O arquivo `settings.py` guarda várias várias variáveis de configuração de ambiente. Neste arquivo estão guardado todos os valores padrões e de exemplo.
 
-Para configurar o seu ambiente local, crie uma pasta chamada `instance` na pasta onde está o `manage.py`, e dentro dela crie um arquivo chamado `settings_local.py`.
+Para configurar o seu ambiente local, crie uma pasta chamada `instance` na pasta onde está o `manage.py`, e dentro dela crie um arquivo chamado `settings_local.py`. A connection string do Postgres deve ser configurada no `settings_local.py`. 
+
+**Somente o arquivo `settings_local.py` deve ser alterado, e no arquivo `settings.py` ficam somente os exemplos de chave/valor.**
 
 O `settings_local.py` será lido depois do settings de fora, então para configurar localmente, somente substitua as variáveis em **maiúsculo** para os valores desejados.
 
