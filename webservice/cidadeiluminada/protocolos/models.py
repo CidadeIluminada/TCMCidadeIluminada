@@ -29,3 +29,6 @@ class Protocolo(db.Model, JSONSerializationMixin):
     bairro = Column(Text)
     rua = Column(Text)
     numero = Column(Text)
+
+    def has_full_address(self):
+        return False

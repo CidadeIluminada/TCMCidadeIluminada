@@ -8,6 +8,7 @@ from flask.ext.login import login_required
 from werkzeug import secure_filename
 
 from cidadeiluminada.base import db
+from cidadeiluminada.services import postmon
 from cidadeiluminada.protocolos.models import Protocolo
 
 bp = Blueprint('protocolos', __name__, template_folder='templates',
@@ -61,6 +62,8 @@ def novo():
         protocolo = Protocolo(cod_protocolo=cod_protocolo, cep=cep, rua=rua,
                               filename=filename, bairro=bairro, numero=numero,
                               cidade=cidade)
+        if not protocolo.has_full_address():
+            pass
         db.session.add(protocolo)
         db.session.commit()
         return jsonify({'status': 'OK'}), 200
