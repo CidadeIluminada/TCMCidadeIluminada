@@ -84,7 +84,7 @@ Vamos agora instalar a aplicação em python:
 
 1. `cd TCMCidadeIluminada` (se você ainda não entrou nessa pasta)
 1. `sh install-cidadeiluminada.sh`
-1. configure o arquivo `settings.py` com suas informações de login do potgres
+1. configure o arquivo `settings.py` com suas informações de login do postgres
 
 Se deu tudo certo, o seu terminal vai ter algo do tipo
 
