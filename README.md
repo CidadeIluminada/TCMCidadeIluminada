@@ -36,7 +36,7 @@ O SSH é mais chato:
 1. Nesse ponto, o ssh-keygen vai pedir uma senha. Deixe em branco
 1. Digite no terminal `eval "$(ssh-agent -s)"`
 1. Digite no terminal `ssh-add ~/.ssh/id_rsa`
-1. Digite no terminal `gedit /.ssh/id_rsa.pub`. Um editor de texto deve abrir. Copie tudo.
+1. Digite no terminal `gedit ~/.ssh/id_rsa.pub`. Um editor de texto deve abrir. Copie tudo.
 1. [Siga os passos para adicionar a senha na conta do GitHub](https://help.github.com/articles/generating-ssh-keys/#step-3-add-your-ssh-key-to-your-account)
 1. A partir daqui o ssh deve estar funcionando.[ Teste seguindo o **Step 4** do guia do GitHub](https://help.github.com/articles/generating-ssh-keys/#step-4-test-everything-out)
 
