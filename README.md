@@ -78,7 +78,7 @@ Finalmente, rode o pgAdmin3 usando `pgadmin3` e configure uma nova conexão usan
 
 Depois de uma excitante viagem, finalmente podemos instalar a aplicação:
 
-Em uma pasta, digite `git clone https://github.com/HardDiskD/TCMCidadeIluminada`. Isso irá criar uma pasta chamada `TCMCidadeIluminada`, com uma pasta `webservice` e outra `android` dentro.
+Em uma pasta, digite `git clone git@github.com:HardDiskD/TCMCidadeIluminada.git`. Isso irá criar uma pasta chamada `TCMCidadeIluminada`, com uma pasta `webservice` e outra `android` dentro.
 
 Vamos agora instalar a aplicação em python:
 
