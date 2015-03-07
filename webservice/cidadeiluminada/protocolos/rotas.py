@@ -48,11 +48,10 @@ def novo():
         filename = secure_filename(arquivo.filename)
         arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                                   filename))
-        import ipdb; ipdb.set_trace();
-        protocolo = Protocolo(cod_protocolo=cod_protocolo, cep=cep,
-                              logradouro=logradouro, filename=filename,
-                              bairro=bairro, numero=numero, cidade=cidade,
-                              estado=estado)
+        protocolo = Protocolo(cod_protocolo=form.cod_protocolo.data, cep=form.cep.data,
+                              logradouro=form.logradouro.data, filename=filename,
+                              bairro=form.bairro.data, numero=form.numero.data, cidade=form.cidade.data,
+                              estado=form.estado.data)
         if not protocolo.has_full_address():
             endereco = postmon.get_by_cep(protocolo.cep)
             protocolo.estado = endereco['estado']
