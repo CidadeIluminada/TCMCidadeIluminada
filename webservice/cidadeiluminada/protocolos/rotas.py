@@ -20,11 +20,6 @@ def init_app(app, url_prefix='/protocolos'):
     app.register_blueprint(bp, url_prefix=url_prefix)
 
 
-def _allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1] in \
-        current_app.config['ALLOWED_EXTENSIONS']
-
-
 @bp.route('/')
 @login_required
 def index():
@@ -47,20 +42,13 @@ def lista():
 
 @bp.route('/novo/', methods=['POST'])
 def novo():
-    form = ProtocoloForm()
-    import ipdb; ipdb.set_trace();
-    cod_protocolo = request.form['cod_protocolo']
-    arquivo = request.files['file']
-    cep = request.form['cep']
-    estado = request.form.get('estado')
-    cidade = request.form.get('cidade')
-    bairro = request.form.get('bairro')
-    logradouro = request.form.get('logradouro')
-    numero = request.form.get('numero')
-    if _allowed_file(arquivo.filename):
+    form = ProtocoloForm(csrf_enabled=False)
+    if form.validate():
+        arquivo = form.arquivo_protocolo.data
         filename = secure_filename(arquivo.filename)
         arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                                   filename))
+        import ipdb; ipdb.set_trace();
         protocolo = Protocolo(cod_protocolo=cod_protocolo, cep=cep,
                               logradouro=logradouro, filename=filename,
                               bairro=bairro, numero=numero, cidade=cidade,
@@ -75,7 +63,10 @@ def novo():
         db.session.commit()
         return jsonify({'status': 'OK'}), 200
     else:
-        return jsonify({'status': 'ERROR'}), 400
+        return jsonify({
+            'status': 'ERROR',
+            'errors': form.errors,
+        }), 400
 
 
 @bp.route('/novo/form/')
