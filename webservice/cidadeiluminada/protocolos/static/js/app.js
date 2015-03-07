@@ -7,6 +7,10 @@ services.factory('protocolosAPI', ['$http', '$filter',
     function($http, $filter){
         var protocolosAPI = {};
 
+        protocolosAPI.getProtocolos = function(dias) {
+           return _get('protocolos.json');
+        };
+
         var _get = function(url, params) {
             return $http({
                 method: 'GET',
@@ -36,17 +40,17 @@ var protocolosControllers = angular.module('protocolosControllers', ['pusher-ang
 
 protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filter', '$pusher', 'protocolosAPI',
   function($scope, $filter, $pusher, protocolosAPI) {
-    moment.lang('pt-br')
+    moment.locale('pt-br');
 
     //$scope.user = JSON.parse($('input[name=current_user]').val());
 
-    /*$scope.loadProtocolos = function() {
+    $scope.loadProtocolos = function() {
         return protocolosAPI
                 .getProtocolos()
                 .then(function(response) {
                     $scope.protocolos = response.data.payload;
                 });
-    }*/
+    }
 
     /*var pusher = $pusher(pusherClient),
         protocolos_channel = pusher.subscribe("private-protocolos");
@@ -57,7 +61,7 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
         $scope.notification('Novo pedido', pedido.id_gan || "Antecipação da análise de crédito");
     });*/
 
-    //$scope.loadProtocolos();
+    $scope.loadProtocolos();
   }
 ]);
 

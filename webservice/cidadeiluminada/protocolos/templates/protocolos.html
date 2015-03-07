@@ -17,9 +17,11 @@
 <div ng-app="protocolosApp" ng-controller="ProtocolosListaController" class="container-fluid row-fluid">
     <div class="span2">
         {{ current_user.username }}
-        [[ 1 + 1 ]]
     </div>
     <div class="span10">
+        <div ng-repeat='protocolo in protocolos'>
+            [[ protocolo.id ]]
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
