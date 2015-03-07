@@ -27,9 +27,7 @@ def _allowed_file(filename):
 @bp.route('/')
 @login_required
 def index():
-    status = ['NOVO', 'INVALIDO', 'PROCESSADO']
-    return render_template('protocolos.html', protocolos=Protocolo.query.order_by(Protocolo.id).all(),
-                           status=status)
+    return render_template('protocolos.html')
 
 
 @bp.route('/protocolo.json')

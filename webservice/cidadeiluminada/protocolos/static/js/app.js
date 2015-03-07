@@ -7,9 +7,17 @@ services.factory('protocolosAPI', ['$http', '$filter',
     function($http, $filter){
         var protocolosAPI = {};
 
-        protocolosAPI.getProtocolos = function(dias) {
+        protocolosAPI.getProtocolos = function getProtocolos() {
            return _get('protocolos.json');
         };
+
+        protocolosAPI.sendStatus = function sendStatus(protocolo_id, status) {
+            var data = {
+                protocolo_id: protocolo_id,
+                status: status,
+            };
+            return _post('/status/', data);
+        }
 
         var _get = function(url, params) {
             return $http({
@@ -22,7 +30,7 @@ services.factory('protocolosAPI', ['$http', '$filter',
         var _post = function (url, data) {
             return $http({
                 method: 'POST',
-                url: '/protocolos/' + data['pedido_id'] + url,
+                url: '/protocolos/' + data['protocolo_id'] + url,
                 data: data
             });
         }
@@ -44,12 +52,22 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
 
     //$scope.user = JSON.parse($('input[name=current_user]').val());
 
-    $scope.loadProtocolos = function() {
+    $scope.statusProtocolos = ['NOVO', 'INVALIDO', 'PROCESSADO']
+
+    $scope.loadProtocolos = function loadProtocolos() {
         return protocolosAPI
                 .getProtocolos()
                 .then(function(response) {
                     $scope.protocolos = response.data.payload;
                 });
+    }
+
+    $scope.sendStatus = function sendStatus(protocolo, status) {
+        return protocolosAPI
+            .sendStatus(protocolo.id, status)
+            .then(function(response) {
+                console.log(response.data);
+            });
     }
 
     /*var pusher = $pusher(pusherClient),
