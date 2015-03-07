@@ -19,15 +19,9 @@
         {{ current_user.username }}
     </div>
     <div class="span10">
-        <div ng-repeat='protocolo in protocolos'>
-            [[ protocolo.id ]]
-        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>
-                        #ID
-                    </th>
                     <th>
                         Código
                     </th>
@@ -44,35 +38,30 @@
                 </tr>
             </thead>
             <tbody>
-                {% for protocolo in protocolos %}
-                <tr>
+                <tr ng-repeat="protocolo in protocolos">
                     <td>
-                        {{ protocolo.id }}
+                        [[ protocolo.cod_protocolo ]]
                     </td>
                     <td>
-                        {{ protocolo.cod_protocolo }}
+                        [[ protocolo.timestamp ]]
                     </td>
                     <td>
-                        {{ protocolo.timestamp }}
+                        <a href="/protocolos/[[ protocolo.id ]]/foto/">Foto</a>
                     </td>
                     <td>
-                        <a href="{{ url_for('.foto', protocolo_id=protocolo.id) }} ">Foto</a>
+                        [[ protocolo.status ]]
                     </td>
                     <td>
-                        {{ protocolo.status }}
-                    </td>
-                    <td>
-                        <form action="{{ url_for('.status', protocolo_id=protocolo.id) }}" method="POST">
+                        {#<form action="{{ url_for('.status', protocolo_id=protocolo.id) }}" method="POST">
                             <select name="status">
                                 {% for status_ in status %}
                                 <option value="{{ status_ }}" {% if status_ == protocolo.status %} selected="selected" {% endif %}> {{ status_ }} </option>
                                 {% endfor %}
                             </select>
                             <button type="submit">Mudar</button>
-                        </form>
+                        </form>#}
                     </td>
                 </tr>
-                {% endfor %}
             </tbody>
         </table>
     </div>
