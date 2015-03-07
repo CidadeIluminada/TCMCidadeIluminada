@@ -50,13 +50,14 @@
   {% endif %}
 {% endwith %}
 <form method="POST" class="form-signin">
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <img src="{{ url_for('static', filename='logo-maior.png') }}" alt="logo da prefeitura de sjc" /> 
+    <h2 class="form-signin-heading">Entrar</h2>
     {{ form.hidden_tag() }}
     {{ form.username(placeholder='Usuário', class_='input-block-level') }}
     {{ form.password(placeholder='Senha', class_='input-block-level') }}
     <label class="checkbox" for="remember_me">
         {{ form.remember_me() }} {{ form.remember_me.label.text }}
     </label>
-    <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+    <button class="btn btn-large btn-primary" type="submit">Entrar</button>
 </form>
 {% endblock %}

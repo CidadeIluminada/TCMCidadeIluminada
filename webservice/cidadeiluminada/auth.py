@@ -40,7 +40,7 @@ bp = Blueprint('auth', __name__, template_folder='templates',
 class LoginForm(Form):
     username = TextField('Username', [Required()])
     password = PasswordField('Password', [Required()])
-    remember_me = BooleanField('Remember Me')
+    remember_me = BooleanField('Lembrar de mim')
 
     def __init__(self, external=False, **kwargs):
         self.external = external
