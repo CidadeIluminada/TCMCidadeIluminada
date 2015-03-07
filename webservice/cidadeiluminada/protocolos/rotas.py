@@ -1,6 +1,7 @@
 # coding: UTF-8
 from __future__ import absolute_import
 import os
+from datetime import datetime
 
 from flask import Blueprint, jsonify, request, current_app,\
     send_from_directory, render_template
@@ -46,8 +47,6 @@ def novo():
     if form.validate():
         arquivo = form.arquivo_protocolo.data
         filename = secure_filename(arquivo.filename)
-        arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
-                                  filename))
         protocolo = Protocolo(cod_protocolo=form.cod_protocolo.data, cep=form.cep.data,
                               logradouro=form.logradouro.data, filename=filename,
                               bairro=form.bairro.data, numero=form.numero.data, cidade=form.cidade.data,
@@ -60,6 +59,9 @@ def novo():
             protocolo.logradouro = endereco['logradouro']
         db.session.add(protocolo)
         db.session.commit()
+        agora = datetime.now().isoformat()
+        filename_completo = "-".join([str(protocolo.id),agora,filename])
+        arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],filename_completo))
         return jsonify({'status': 'OK'}), 200
     else:
         return jsonify({
