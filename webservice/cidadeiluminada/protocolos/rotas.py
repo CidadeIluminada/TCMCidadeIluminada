@@ -10,6 +10,7 @@ from werkzeug import secure_filename
 from cidadeiluminada.base import db
 from cidadeiluminada.services import postmon
 from cidadeiluminada.protocolos.models import Protocolo
+from cidadeiluminada.protocolos.forms import ProtocoloForm
 
 bp = Blueprint('protocolos', __name__, template_folder='templates',
                static_folder='static')
@@ -46,6 +47,8 @@ def lista():
 
 @bp.route('/novo/', methods=['POST'])
 def novo():
+    form = ProtocoloForm()
+    import ipdb; ipdb.set_trace();
     cod_protocolo = request.form['cod_protocolo']
     arquivo = request.files['file']
     cep = request.form['cep']
