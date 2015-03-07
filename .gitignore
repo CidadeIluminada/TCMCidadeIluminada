@@ -80,3 +80,5 @@ proguard/
 *.db
 
 */tmp/*
+.webassets-cache
+webservice/instance

@@ -10,10 +10,23 @@ db = SQLAlchemy()
 
 
 class JSONSerializationMixin(object):
-    """docstring for JSONSerializationMixin"""
+
+    ignored_fields = []
+
+    serialize_property = []
+
+    @classmethod
+    def deserialize(cls, data):
+        return cls(**data)
+
     def serialize(self):
-        return {k: v for k, v in self.__dict__.items()
-                if k is not '_sa_instance_state'}
+        _d = {k: v.value for k, v in
+              dict(self._sa_instance_state.attrs).items()
+              if not k.startswith('_') and k not in self.ignored_fields}
+        _update = {_property: getattr(self, _property) for _property
+                   in self.serialize_property}
+        _d.update(_update)
+        return _d
 
 
 class AppJSONEncoder(JSONEncoder):
