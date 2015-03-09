@@ -49,8 +49,8 @@
     </div>
   {% endif %}
 {% endwith %}
-<form method="POST" class="form-signin">
-    <img src="{{ url_for('static', filename='logo-maior.png') }}" alt="logo da prefeitura de sjc" /> 
+<form method="POST" style="padding-bottom:5px;" class="form-signin">
+    <img width="270" src="{{ url_for('static', filename='logo-ci.png') }}" alt="logo cidade iluminada" /> 
     <h2 class="form-signin-heading">Entrar</h2>
     {{ form.hidden_tag() }}
     {{ form.username(placeholder='Usuário', class_='input-block-level') }}
@@ -58,6 +58,13 @@
     <label class="checkbox" for="remember_me">
         {{ form.remember_me() }} {{ form.remember_me.label.text }}
     </label>
-    <button class="btn btn-large btn-primary" type="submit">Entrar</button>
+    <button class="btn btn-large btn-primary" style="width:100%" type="submit">Entrar</button>
+
+   <br class="clean:both" />
+    
+      <img width="150" style="margin-top:30px; margin-left:160px;" src="{{ url_for('static', filename='logo-sjc.png') }}" alt="logo cidade iluminada" /> 
+
 </form>
+
+    
 {% endblock %}
