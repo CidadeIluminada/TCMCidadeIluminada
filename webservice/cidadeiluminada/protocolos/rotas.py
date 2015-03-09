@@ -47,10 +47,11 @@ def novo():
     if form.validate():
         arquivo = form.arquivo_protocolo.data
         filename = secure_filename(arquivo.filename)
-        protocolo = Protocolo(cod_protocolo=form.cod_protocolo.data, cep=form.cep.data,
-                              logradouro=form.logradouro.data, filename=filename,
-                              bairro=form.bairro.data, numero=form.numero.data, cidade=form.cidade.data,
-                              estado=form.estado.data)
+        protocolo = Protocolo(cod_protocolo=form.cod_protocolo.data,
+                              cep=form.cep.data, filename=filename,
+                              logradouro=form.logradouro.data,
+                              cidade=form.cidade.data, bairro=form.bairro.data,
+                              numero=form.numero.data, estado=form.estado.data)
         if not protocolo.has_full_address():
             endereco = postmon.get_by_cep(protocolo.cep)
             protocolo.estado = endereco['estado']
@@ -60,8 +61,9 @@ def novo():
         db.session.add(protocolo)
         db.session.commit()
         agora = datetime.now().isoformat()
-        filename_completo = "-".join([str(protocolo.id),agora,filename])
-        arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],filename_completo))
+        filename_completo = "-".join([str(protocolo.id), agora, filename])
+        arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
+                     filename_completo))
         return jsonify({'status': 'OK'}), 200
     else:
         return jsonify({
