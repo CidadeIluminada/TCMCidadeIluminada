@@ -1,0 +1,431 @@
+thais
+    description: Notebook
+    product: 37722XP (LENOVO_MT_3772)
+    vendor: LENOVO
+    version: Lenovo B490
+    serial: PEAKB80
+    width: 64 bits
+    capabilities: smbios-2.7 dmi-2.7 vsyscall32
+    configuration: administrator_password=disabled chassis=notebook family=Lenovo B490 power-on_password=disabled sku=LENOVO_MT_3772 uuid=8137A7E5-6353-CB11-B015-C6E7EC13245F
+  *-core
+       description: Motherboard
+       product: 37722XP
+       vendor: LENOVO
+       physical id: 0
+       version: Win8 STD EM DPK TPG
+       serial: INVALID
+       slot: Not Available
+     *-cpu
+          description: CPU
+          product: Intel(R) Core(TM) i3-3110M CPU @ 2.40GHz
+          vendor: Intel Corp.
+          physical id: 5
+          bus info: cpu@0
+          version: Intel(R) Core(TM) i3-3110M CPU @ 2.40GHz
+          serial: To Be Filled By O.E.M.
+          slot: CPU Socket - U3E1
+          size: 2400MHz
+          capacity: 2400MHz
+          width: 64 bits
+          clock: 100MHz
+          capabilities: x86-64 fpu fpu_exception wp vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer xsave avx f16c lahf_lm arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms cpufreq
+          configuration: cores=2 enabledcores=2 threads=4
+        *-cache:0
+             description: L1 cache
+             physical id: 7
+             slot: L1-Cache
+             size: 32KiB
+             capacity: 32KiB
+             capabilities: internal write-through instruction
+        *-cache:1
+             description: L2 cache
+             physical id: 8
+             slot: L2-Cache
+             size: 256KiB
+             capacity: 256KiB
+             capabilities: internal write-through unified
+        *-cache:2
+             description: L3 cache
+             physical id: 9
+             slot: L3-Cache
+             size: 3MiB
+             capacity: 3MiB
+             capabilities: internal write-back unified
+     *-cache
+          description: L1 cache
+          physical id: 6
+          slot: L1-Cache
+          size: 32KiB
+          capacity: 32KiB
+          capabilities: internal write-through data
+     *-memory
+          description: System Memory
+          physical id: b
+          slot: System board or motherboard
+          size: 4GiB
+        *-bank:0
+             description: DIMM [empty]
+             physical id: 0
+             slot: ChannelA-DIMM0
+        *-bank:1
+             description: SODIMM DDR3 Synchronous 1600 MHz (0,6 ns)
+             product: SH564128FJ8NZRNSDG
+             vendor: AMD
+             physical id: 1
+             serial: 07446C82
+             slot: ChannelB-DIMM0
+             size: 4GiB
+             width: 64 bits
+             clock: 1600MHz (0.6ns)
+     *-firmware
+          description: BIOS
+          vendor: LENOVO
+          physical id: 0
+          version: H1ET75WW(1.18)
+          date: 06/27/2013
+          size: 128KiB
+          capacity: 11MiB
+          capabilities: pci pnp upgrade shadowing cdboot bootselect edd int13floppy720 int5printscreen int9keyboard int14serial int17printer int10video acpi usb biosbootspecification uefi
+     *-pci
+          description: Host bridge
+          product: 3rd Gen Core processor DRAM Controller
+          vendor: Intel Corporation
+          physical id: 100
+          bus info: pci@0000:00:00.0
+          version: 09
+          width: 32 bits
+          clock: 33MHz
+          configuration: driver=ivb_uncore
+          resources: irq:0
+        *-display
+             description: VGA compatible controller
+             product: 3rd Gen Core processor Graphics Controller
+             vendor: Intel Corporation
+             physical id: 2
+             bus info: pci@0000:00:02.0
+             version: 09
+             width: 64 bits
+             clock: 33MHz
+             capabilities: msi pm vga_controller bus_master cap_list rom
+             configuration: driver=i915 latency=0
+             resources: irq:44 memory:f0000000-f03fffff memory:e0000000-efffffff ioport:3000(size=64)
+        *-usb:0
+             description: USB controller
+             product: 7 Series/C210 Series Chipset Family USB xHCI Host Controller
+             vendor: Intel Corporation
+             physical id: 14
+             bus info: pci@0000:00:14.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi xhci bus_master cap_list
+             configuration: driver=xhci_hcd latency=0
+             resources: irq:40 memory:f0600000-f060ffff
+        *-communication
+             description: Communication controller
+             product: 7 Series/C210 Series Chipset Family MEI Controller #1
+             vendor: Intel Corporation
+             physical id: 16
+             bus info: pci@0000:00:16.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi bus_master cap_list
+             configuration: driver=mei_me latency=0
+             resources: irq:43 memory:f0615000-f061500f
+        *-usb:1
+             description: USB controller
+             product: 7 Series/C210 Series Chipset Family USB Enhanced Host Controller #2
+             vendor: Intel Corporation
+             physical id: 1a
+             bus info: pci@0000:00:1a.0
+             version: 04
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:16 memory:f061a000-f061a3ff
+        *-multimedia
+             description: Audio device
+             product: 7 Series/C210 Series Chipset Family High Definition Audio Controller
+             vendor: Intel Corporation
+             physical id: 1b
+             bus info: pci@0000:00:1b.0
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             capabilities: pm msi pciexpress bus_master cap_list
+             configuration: driver=snd_hda_intel latency=0
+             resources: irq:45 memory:f0610000-f0613fff
+        *-pci:0
+             description: PCI bridge
+             product: 7 Series/C210 Series Chipset Family PCI Express Root Port 1
+             vendor: Intel Corporation
+             physical id: 1c
+             bus info: pci@0000:00:1c.0
+             version: c4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:16
+        *-pci:1
+             description: PCI bridge
+             product: 7 Series/C210 Series Chipset Family PCI Express Root Port 2
+             vendor: Intel Corporation
+             physical id: 1c.1
+             bus info: pci@0000:00:1c.1
+             version: c4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:17 memory:f0500000-f05fffff
+           *-network
+                description: Network controller
+                product: BCM43142 802.11b/g/n
+                vendor: Broadcom Corporation
+                physical id: 0
+                bus info: pci@0000:02:00.0
+                version: 01
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress bus_master cap_list
+                configuration: driver=bcma-pci-bridge latency=0
+                resources: irq:17 memory:f0500000-f0507fff
+        *-pci:2
+             description: PCI bridge
+             product: 7 Series/C210 Series Chipset Family PCI Express Root Port 4
+             vendor: Intel Corporation
+             physical id: 1c.3
+             bus info: pci@0000:00:1c.3
+             version: c4
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pci pciexpress msi pm normal_decode bus_master cap_list
+             configuration: driver=pcieport
+             resources: irq:19 ioport:2000(size=4096) ioport:f0400000(size=1048576)
+           *-network
+                description: Ethernet interface
+                product: RTL8111/8168/8411 PCI Express Gigabit Ethernet Controller
+                vendor: Realtek Semiconductor Co., Ltd.
+                physical id: 0
+                bus info: pci@0000:03:00.0
+                logical name: eth0
+                version: 07
+                serial: 64:1c:67:64:be:22
+                size: 10Mbit/s
+                capacity: 1Gbit/s
+                width: 64 bits
+                clock: 33MHz
+                capabilities: pm msi pciexpress msix vpd bus_master cap_list ethernet physical tp mii 10bt 10bt-fd 100bt 100bt-fd 1000bt 1000bt-fd autonegotiation
+                configuration: autonegotiation=on broadcast=yes driver=r8169 driverversion=2.3LK-NAPI duplex=half firmware=rtl8168e-3_0.0.4 03/27/12 latency=0 link=no multicast=yes port=MII speed=10Mbit/s
+                resources: irq:41 ioport:2000(size=256) memory:f0404000-f0404fff memory:f0400000-f0403fff
+        *-usb:2
+             description: USB controller
+             product: 7 Series/C210 Series Chipset Family USB Enhanced Host Controller #1
+             vendor: Intel Corporation
+             physical id: 1d
+             bus info: pci@0000:00:1d.0
+             version: 04
+             width: 32 bits
+             clock: 33MHz
+             capabilities: pm debug ehci bus_master cap_list
+             configuration: driver=ehci-pci latency=0
+             resources: irq:23 memory:f0619000-f06193ff
+        *-isa
+             description: ISA bridge
+             product: HM77 Express Chipset LPC Controller
+             vendor: Intel Corporation
+             physical id: 1f
+             bus info: pci@0000:00:1f.0
+             version: 04
+             width: 32 bits
+             clock: 33MHz
+             capabilities: isa bus_master cap_list
+             configuration: driver=lpc_ich latency=0
+             resources: irq:0
+        *-storage
+             description: SATA controller
+             product: 7 Series Chipset Family 6-port SATA Controller [AHCI mode]
+             vendor: Intel Corporation
+             physical id: 1f.2
+             bus info: pci@0000:00:1f.2
+             version: 04
+             width: 32 bits
+             clock: 66MHz
+             capabilities: storage msi pm ahci_1.0 bus_master cap_list
+             configuration: driver=ahci latency=0
+             resources: irq:42 ioport:3088(size=8) ioport:3094(size=4) ioport:3080(size=8) ioport:3090(size=4) ioport:3060(size=32) memory:f0618000-f06187ff
+        *-serial UNCLAIMED
+             description: SMBus
+             product: 7 Series/C210 Series Chipset Family SMBus Controller
+             vendor: Intel Corporation
+             physical id: 1f.3
+             bus info: pci@0000:00:1f.3
+             version: 04
+             width: 64 bits
+             clock: 33MHz
+             configuration: latency=0
+             resources: memory:f0614000-f06140ff ioport:efa0(size=32)
+     *-scsi:0
+          physical id: 1
+          logical name: scsi1
+          capabilities: emulated
+        *-disk
+             description: ATA Disk
+             product: ST500LM012 HN-M5
+             vendor: Seagate
+             physical id: 0.0.0
+             bus info: scsi@1:0.0.0
+             logical name: /dev/sda
+             version: 0002
+             serial: S2YJJ9BD514432
+             size: 465GiB (500GB)
+             capabilities: gpt-1.00 partitioned partitioned:gpt
+             configuration: ansiversion=5 guid=412c3834-b31e-4645-af4b-745cb1159ed8 sectorsize=4096
+           *-volume:0
+                description: Windows NTFS volume
+                vendor: Windows
+                physical id: 1
+                bus info: scsi@1:0.0.0,1
+                logical name: /dev/sda1
+                version: 3.1
+                serial: 12a3-82a9
+                size: 998MiB
+                capacity: 999MiB
+                capabilities: boot precious readonly hidden nomount ntfs initialized
+                configuration: clustersize=4096 created=2014-01-16 18:11:15 filesystem=ntfs label=WINRE_DRV state=clean
+           *-volume:1
+                description: Windows FAT volume
+                vendor: MSDOS5.0
+                physical id: 2
+                bus info: scsi@1:0.0.0,2
+                logical name: /dev/sda2
+                logical name: /boot/efi
+                version: FAT32
+                serial: eca3-b271
+                size: 247MiB
+                capacity: 259MiB
+                capabilities: boot fat initialized
+                configuration: FATs=2 filesystem=fat mount.fstype=vfat mount.options=rw,relatime,fmask=0000,dmask=0000,allow_utime=0022,codepage=437,iocharset=iso8859-1,shortname=mixed,errors=remount-ro name=EFI system partition state=mounted
+           *-volume:2
+                description: reserved partition
+                vendor: Windows
+                physical id: 3
+                bus info: scsi@1:0.0.0,3
+                logical name: /dev/sda3
+                serial: 72d47c35-4f41-4016-aac3-299d498b5783
+                capacity: 127MiB
+                capabilities: nofs
+                configuration: name=Microsoft reserved partition
+           *-volume:3
+                description: Windows NTFS volume
+                vendor: Windows
+                physical id: 4
+                bus info: scsi@1:0.0.0,4
+                logical name: /dev/sda4
+                logical name: /media/thais/Windows8_OS
+                version: 3.1
+                serial: e8e5e3bc-6fe5-124e-be85-ad3fd66cb16a
+                size: 300GiB
+                capacity: 300GiB
+                capabilities: ntfs initialized
+                configuration: clustersize=4096 created=2014-01-16 18:11:16 filesystem=ntfs label=Windows8_OS mount.fstype=fuseblk mount.options=rw,nosuid,nodev,relatime,user_id=0,group_id=0,default_permissions,allow_other,blksize=4096 name=Basic data partition state=mounted
+           *-volume:4
+                description: Windows NTFS volume
+                vendor: Windows
+                physical id: 5
+                bus info: scsi@1:0.0.0,5
+                logical name: /dev/sda5
+                version: 3.1
+                serial: aab2-abe8
+                size: 429MiB
+                capacity: 449MiB
+                capabilities: boot precious readonly hidden nomount ntfs initialized
+                configuration: clustersize=4096 created=2014-06-03 14:10:19 filesystem=ntfs modified_by_chkdsk=true mounted_on_nt4=true resize_log_file=true state=dirty upgrade_on_mount=true
+           *-volume:5
+                description: Windows NTFS volume
+                vendor: Windows
+                physical id: 6
+                bus info: scsi@1:0.0.0,6
+                logical name: /dev/sda6
+                version: 3.1
+                serial: dc16-c890
+                size: 9215MiB
+                capacity: 9237MiB
+                capabilities: boot precious readonly hidden nomount ntfs initialized
+                configuration: clustersize=4096 created=2014-01-16 18:11:05 filesystem=ntfs label=Lenovo_Recovery modified_by_chkdsk=true mounted_on_nt4=true resize_log_file=true state=dirty upgrade_on_mount=true
+           *-volume:6
+                description: Linux swap volume
+                vendor: Linux
+                physical id: 7
+                bus info: scsi@1:0.0.0,7
+                logical name: /dev/sda7
+                version: 1
+                serial: b3cadd25-007e-4c26-b292-52b863eef51a
+                size: 3905MiB
+                capacity: 3905MiB
+                capabilities: nofs swap initialized
+                configuration: filesystem=swap pagesize=4095
+           *-volume:7
+                description: EXT4 volume
+                vendor: Linux
+                physical id: 8
+                bus info: scsi@1:0.0.0,8
+                logical name: /dev/sda8
+                logical name: /
+                version: 1.0
+                serial: e0bcb3b9-dfcd-45a0-8b8d-09862af3975b
+                size: 150GiB
+                capabilities: journaled extended_attributes large_files huge_files dir_nlink recover extents ext4 ext2 initialized
+                configuration: created=2015-02-24 18:56:14 filesystem=ext4 lastmountpoint=/ modified=2015-03-02 16:11:42 mount.fstype=ext4 mount.options=rw,relatime,errors=remount-ro,data=ordered mounted=2015-03-02 16:11:42 state=mounted
+     *-scsi:1
+          physical id: 2
+          logical name: scsi4
+          capabilities: emulated
+        *-cdrom
+             description: DVD-RAM writer
+             product: DVDRAM GT80N
+             vendor: HL-DT-ST
+             physical id: 0.0.0
+             bus info: scsi@4:0.0.0
+             logical name: /dev/cdrom
+             logical name: /dev/cdrw
+             logical name: /dev/dvd
+             logical name: /dev/dvdrw
+             logical name: /dev/sr0
+             version: LN80
+             capabilities: removable audio cd-r cd-rw dvd dvd-r dvd-ram
+             configuration: ansiversion=5 status=nodisc
+     *-scsi:2
+          physical id: 3
+          bus info: usb@2:1.6
+          logical name: scsi6
+          capabilities: emulated scsi-host
+          configuration: driver=usb-storage
+        *-disk
+             description: SCSI Disk
+             product: Card  Reader
+             vendor: Multiple
+             physical id: 0.0.0
+             bus info: scsi@6:0.0.0
+             logical name: /dev/sdb
+             version: 1.00
+             capabilities: removable
+             configuration: sectorsize=512
+           *-medium
+                physical id: 0
+                logical name: /dev/sdb
+  *-battery:0
+       product: 45N1043
+       vendor: SANYO
+       physical id: 1
+       slot: Rear
+       capacity: 47520mWh
+       configuration: voltage=10,8V
+  *-battery:1
+       product: 45N1043
+       vendor: SANYO
+       physical id: 2
+       slot: Bottom
