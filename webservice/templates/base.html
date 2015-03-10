@@ -12,40 +12,55 @@
         {% if current_user and not current_user.is_anonymous() %}
         <header>
             <nav class="navbar navbar-static">
-    <div class="container">
-      <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="glyphicon glyphicon-chevron-down"></span>
-      </a>
-      <div class="nav-collapse collase">
-        <ul class="nav navbar-nav">
-            {% for title, _endpoint in menu_items %}
-            <li>
-                <a {% if request.endpoint == _endpoint %} class="active" {% endif %} href="{{ url_for(_endpoint) }}">{{ title }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-        <ul class="nav navbar-right navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
-            <ul class="dropdown-menu" style="padding:12px;">
-                <form class="form-inline">
-                    <button type="submit" class="btn btn-default pull-right"><i class="glyphicon glyphicon-search"></i></button><input type="text" class="form-control pull-left" placeholder="Search">
-                </form>
-              </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Profile</a></li>
-              <li class="divider"></li>
-              <li><a href="#">About</a></li>
-             </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-</nav><!-- /.navbar -->
+                <div class="container">
+                    <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                    <div class="nav-collapse collase">
+                        <ul class="nav navbar-nav">
+                            {% for title, _endpoint in menu_items %}
+                            <li>
+                                <a {% if request.endpoint == _endpoint %} class="active" {% endif %} href="{{ url_for(_endpoint) }}">{{ title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <ul class="nav navbar-right navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </a>
+                                <ul class="dropdown-menu" style="padding:12px;">
+                                    <form class="form-inline">
+                                        <button type="submit" class="btn btn-default pull-right">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                        <input type="text" class="form-control pull-left" placeholder="Search">
+                                    </form>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <i class="glyphicon glyphicon-chevron-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Login</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Profile</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#">About</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
         {% endif %}
         {% block content %}
         {% endblock %}
