@@ -40,7 +40,6 @@ def menu_items():
         'menu_items': [
             (u'Protocolos', 'protocolos.index'),
             (u'(ALPHA) Novo protocolo', 'protocolos.novo_pagina'),
-            (u'Sair', 'auth.logout'),
         ]
     }
 

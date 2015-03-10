@@ -4,7 +4,7 @@
         <title>{% block title %} {% endblock %} - Cidade Iluminada</title>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />
-        <link rel="shortcut icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='icon/favicon-16x16.png') }}">
+        <link rel="shortcut  icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='icon/favicon-16x16.png') }}">
         {% assets output='gen/base.css', 'css/styles.css' %}
         <link href="{{ ASSET_URL }}" rel="stylesheet">
         {% endassets %}
@@ -30,32 +30,15 @@
                         <ul class="nav navbar-right navbar-nav">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </a>
-                                <ul class="dropdown-menu" style="padding:12px;">
-                                    <form class="form-inline">
-                                        <button type="submit" class="btn btn-default pull-right">
-                                            <i class="glyphicon glyphicon-search"></i>
-                                        </button>
-                                        <input type="text" class="form-control pull-left" placeholder="Search">
-                                    </form>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="glyphicon glyphicon-user"></i>
                                     <i class="glyphicon glyphicon-chevron-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="#">Login</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Profile</a>
-                                    </li>
+                                        Bem-Vindo <b>{{ current_user.username }}</b>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="#">About</a>
+                                        <a href="{{ url_for('auth.logout') }}">Sair</a>
                                     </li>
                                 </ul>
                             </li>
