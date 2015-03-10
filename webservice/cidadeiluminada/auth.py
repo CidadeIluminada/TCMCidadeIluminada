@@ -54,6 +54,7 @@ class LoginForm(Form):
             self.user = User.check_auth(username, password)
         return self.user is not None
 
+
 @bp.route("/cadastro/")
 def cadastro():
     return render_template("cadastro.html")
