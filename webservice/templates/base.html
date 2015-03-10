@@ -5,6 +5,9 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css" />
         <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon/favicon-32x32.png') }}">
+        {% assets output='gen/base.css', 'css/styles.css' %}
+        <link href="{{ ASSET_URL }}" rel="stylesheet">
+        {% endassets %}
         {% block head_tail %}
         {% endblock %}
     </head>

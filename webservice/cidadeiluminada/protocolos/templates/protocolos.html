@@ -2,9 +2,6 @@
 {% block title %}Protocolos{% endblock %}
 
 {% block head_tail %}
-{% assets output='gen/protocolos/lista_protocolos.css', 'protocolos/css/styles.css' %}
-<link href="{{ ASSET_URL }}" rel="stylesheet">
-{% endassets %}
 {% endblock %}
 
 {% block body_tail %}
@@ -20,118 +17,118 @@
 
 {% block content %}
 <header class="masthead">
-  <div class="container">
-    <div class="row">
-      <div class="col col-sm-6">
-        <h1><a href="#" title="scroll down for your viewing pleasure">CidadeIluminada</a>
-          <p class="lead">Painel Administrativo</p></h1>
-      </div>
-      <div class="col col-sm-6">
-        <div class="well pull-right">
-          <img width="150" src="{{ url_for('protocolos.static', filename='img/logo-ci.png') }}">
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-6">
+                <h1>
+                    <a href="#">CidadeIluminada</a>
+                    <p class="lead">Painel Administrativo</p>
+                </h1>
+            </div>
+            <div class="col col-sm-6">
+                <div class="well pull-right">
+                    <img width="150" src="{{ url_for('protocolos.static', filename='img/logo-ci.png') }}">
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-
-  {#<div class="container">
-    <div class="row">
-      <div class="col col-sm-12">
-
-        <div class="panel">
-        <div class="panel-body">
-         Nova funcionalidade adicionada ao painel administrativo!  <span class="glyphicon glyphicon-ok"></span>
+    {#<div class="container">
+        <div class="row">
+            <div class="col col-sm-12">
+                <div class="panel">
+                    <div class="panel-body">
+                        Nova funcionalidade adicionada ao painel administrativo!<span class="glyphicon glyphicon-ok"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-
-      </div>
-    </div>
-  </div>#}
+    </div>#}
 </header>
 <div class="container">
     <div class="row">
-            <div class="col col-sm-3">
-                <div id="sidebar">
-              <div class="panel panel-default">
-          <div class="panel-heading"> <h4>Filtros <i class="glyphicon glyphicon-sort-by-attributes-alt pull-right"></i></h4></div>
-        <div class="panel-body">
-              <div class="list-group">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Filtro 1
-                  </label>
+        <div class="col col-sm-3">
+            <div id="sidebar">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Filtros
+                            <i class="glyphicon glyphicon-sort-by-attributes-alt pull-right"></i>
+                        </h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Filtro 1
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Filtro 2
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Filtro 3
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Filtro 4
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Filtro 2
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Filtro 3
-                  </label>
-                </div>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Filtro 4
-                  </label>
-                </div>
-              </div>
             </div>
-      </div>
-               </div>
-            </div>
-            <div class="col col-sm-9">
-              <div class="panel">
-              <h1>Protocolos</h1>
-              <div ng-app="protocolosApp" ng-controller="ProtocolosListaController" class="container-fluid row-fluid">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>
-                        Código
-                    </th>
-                    <th>
-                        Criação
-                    </th>
-                    <th>
-                        Foto
-                    </th>
-                    <th>
-                        Status
-                    </th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="protocolo in protocolos">
-                    <td>
-                        [[ protocolo.cod_protocolo ]]
-                    </td>
-                    <td>
-                        [[ protocolo.timestamp ]]
-                    </td>
-                    <td>
-                        <a target="_blank" href="/protocolos/[[ protocolo.id ]]/foto/">Foto</a>
-                    </td>
-                    <td>
-                        [[ protocolo.status ]]
-                    </td>
-                    <td>
-                        <form name="statusForm" ng-submit="sendStatus(protocolo, pedido._status)">
-                            <select name="status" ng-model="pedido._status" ng-options="status for status in statusProtocolos">
-                            </select>
-                            <button type="submit">Mudar</button>
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</div>
-
-                <hr>
-                <h4><a href="http://bootply.com/">Bootply</a></h4>
-                <hr>
+        </div>
+        <div class="col col-sm-9">
+            <div class="panel">
+                <h1>Protocolos</h1>
+                <div ng-app="protocolosApp" ng-controller="ProtocolosListaController" class="container-fluid row-fluid">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Código
+                                </th>
+                                <th>
+                                    Criação
+                                </th>
+                                <th>
+                                    Foto
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="protocolo in protocolos">
+                            <td>
+                                [[ protocolo.cod_protocolo ]]
+                            </td>
+                            <td>
+                                [[ protocolo.timestamp ]]
+                            </td>
+                            <td>
+                                <a target="_blank" href="/protocolos/[[ protocolo.id ]]/foto/">Foto</a>
+                            </td>
+                            <td>
+                                [[ protocolo.status ]]
+                            </td>
+                            <td>
+                                <form name="statusForm" ng-submit="sendStatus(protocolo, pedido._status)">
+                                    <select name="status" ng-model="pedido._status" ng-options="status for status in statusProtocolos">
+                                    </select>
+                                    <button type="submit">Mudar</button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
+            </div>
         </div>
     </div>
 </div>
