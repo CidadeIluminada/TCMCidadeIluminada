@@ -1,94 +1,34 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="content">
-  <form id="cadastro" name="cadastro" method="post" action="cadastro.php" onsubmit="return validaCampo(); return false;">
-<fieldset>
-
-<!-- Form Name -->
-<legend>Cadastro</legend>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="nome">Nome: </label>
-  <div class="controls">
-    <input id="nome" name="nome" type="text" placeholder="Nome Completo" class="input-medium" required="">
-
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="email">Email:</label>
-  <div class="controls">
-    <input id="email" name="email" type="text" placeholder="Email" class="input-medium" required="">
-
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="matricula">Matrícula:</label>
-  <div class="controls">
-    <input id="matricula" name="matricula" type="text" placeholder="Nº matrícula" class="input-small" required="">
-
-  </div>
-</div>
-
-<!-- Multiple Radios -->
-<div class="control-group">
-  <label class="control-label" for="sexo">Sexo:</label>
-  <div class="controls">
-    <label class="radio" for="sexo-0">
-      <input type="radio" name="sexo" id="sexo-0" value="Feminino" checked="checked">
-      Feminino
-    </label>
-    <label class="radio" for="sexo-1">
-      <input type="radio" name="sexo" id="sexo-1" value="Masculino">
-      Masculino
-    </label>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="control-group">
-  <label class="control-label" for="usuario">Usuário: </label>
-  <div class="controls">
-    <input id="usuario" name="usuario" type="text" placeholder="Nome de Usuário" class="input-medium" required="">
-
-  </div>
-</div>
-
-<!-- Password input-->
-<div class="control-group">
-  <label class="control-label" for="senha">Senha:</label>
-  <div class="controls">
-    <input id="senha" name="senha" type="password" placeholder="Insira senha com 4 dígitos" class="input-medium" required="">
-
-  </div>
-</div>
-
-<!-- Password input-->
-<div class="control-group">
-  <label class="control-label" for="confirma_senha">Confirme a Senha:</label>
-  <div class="controls">
-    <input id="confirma_senha" name="confirma_senha" type="password" placeholder="Confirme a Senha" class="input-medium" required="">
-
-  </div>
-</div>
-
-<!-- Button (Double) -->
-<div class="control-group">
-  <label class="control-label" for="button1id"></label>
-  <div class="controls">
-    <button id="button1id" name="button1id" class="btn btn-success">Cadastrar</button>
-    <button id="button2id" name="button2id" class="btn btn-info">Limpar </button>
-  </div>
-</div>
-
-</fieldset>
+<form class="form-horizontal">
+    <fieldset>
+        <legend>Cadastro</legend>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="username">Usuário</label>
+            <div class="col-md-5">
+                <input id="username" name="username" type="text" placeholder="Nome de usuário" class="form-control input-md" required="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password">Senha</label>
+            <div class="col-md-5">
+                <input id="password" name="password" type="password" class="form-control input-md" required="">
+                <span class="help-block">Mínimo 6 dígitos</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="password_confirm">Confirme a senha</label>
+            <div class="col-md-5">
+                <input id="password_confirm" name="password_confirm" type="password" class="form-control input-md" required="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for=""></label>
+            <div class="col-md-8">
+                <button id="" name="" type="submit" class="btn btn-success">Cadastrar</button>
+                <button id="limpar" name="limpar" type="button" class="btn btn-default">Limpar</button>
+            </div>
+        </div>
+    </fieldset>
 </form>
-
-</form>
-
-</div>
 {% endblock %}

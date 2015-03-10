@@ -58,6 +58,7 @@ class LoginForm(Form):
 def cadastro():
     return render_template("cadastro.html")
 
+
 @bp.route("/login/", methods=["GET", "POST"])
 def login():
     username = request.args.get('username')
