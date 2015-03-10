@@ -18,9 +18,11 @@
       </a>
       <div class="nav-collapse collase">
         <ul class="nav navbar-nav">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
+            {% for title, _endpoint in menu_items %}
+            <li>
+                <a {% if request.endpoint == _endpoint %} class="active" {% endif %} href="{{ url_for(_endpoint) }}">{{ title }}</a>
+            </li>
+            {% endfor %}
         </ul>
         <ul class="nav navbar-right navbar-nav">
           <li class="dropdown">
@@ -44,19 +46,6 @@
       </div>
     </div>
 </nav><!-- /.navbar -->
-            <nav class="navbar">
-                <div class="navbar-inner">
-                    <a class="brand" href="{{ url_for('index') }}">Cidade Iluminada</a>
-                    <ul class="nav">
-                        {% for title, _endpoint in menu_items %}
-                        <li>
-                            <a {% if request.endpoint == _endpoint %} class="active" {% endif %} href="{{ url_for(_endpoint) }}">{{ title }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            </nav>
-        </header>
         {% endif %}
         {% block content %}
         {% endblock %}
