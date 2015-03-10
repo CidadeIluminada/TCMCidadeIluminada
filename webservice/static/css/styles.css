@@ -20,7 +20,7 @@ header {
   #sidebar.affix {
       position: fixed;
       top: 0;
-      width:21.2%;
+      width: 262.5px;
   }
 }
 
