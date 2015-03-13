@@ -54,9 +54,17 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
   function($scope, $filter, $pusher, protocolosAPI) {
     moment.locale('pt-br');
 
-    //$scope.user = JSON.parse($('input[name=current_user]').val());
+    $scope.statusProtocolos = ['NOVO', 'INVALIDO', 'PROCESSADO'];
+    $scope.statusProtocolosOptions = {
+        'NOVO': 'Novos',
+        'INVALIDO': 'Inválidos',
+        'PROCESSADO': 'Processados',
+    };
 
-    $scope.statusProtocolos = ['NOVO', 'INVALIDO', 'PROCESSADO']
+    $scope.filters = {
+        'status': null,
+        'pesquisa': null,
+    }
 
     $scope.loadProtocolos = function loadProtocolos(cod_protocolo) {
         return protocolosAPI
@@ -77,6 +85,24 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
                 console.log(response.data);
             });
     };
+
+    $scope.filterProtocolos = function filterProtocolos(filter) {
+        return function(protocolo) {
+            if (filter === null) {
+                return true;
+            }
+            return filter == protocolo.status;
+        }
+    }
+
+    $scope.reloadProtocolos = function reloadProtocolos(filters) {
+        $scope.loadProtocolos(filters.pesquisa);
+    }
+
+    $scope.cleanPesquisa = function cleanPesquisa() {
+        $scope.filters.pesquisa = null;
+        $scope.reloadProtocolos($scope.filters);
+    }
 
     /*var pusher = $pusher(pusherClient),
         protocolos_channel = pusher.subscribe("private-protocolos");

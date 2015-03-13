@@ -57,24 +57,16 @@
                     <div class="panel-body">
                         <div class="list-group">
                             <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Filtro 1
-                                </label>
+                                Situação:
+                                <select style="width: 104px; margin-left: 10px;" ng-model="filters.status" ng-options="key as value for (key, value) in statusProtocolosOptions">
+                                    <option value="">(Todos)</option>
+                                </select>
                             </div>
                             <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Filtro 2
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Filtro 3
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Filtro 4
-                                </label>
+                                <input style="width: 142px;" placeholder="Código do protocolo" type="text" ng-model="filters.pesquisa" ng-blur="reloadProtocolos(filters)" ng-enter="reloadProtocolos(filters)"/>
+                                <button type="button" ng-click="cleanPesquisa(filters)" ng-show="filters.pesquisa" style="color: red;">
+                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -104,7 +96,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="protocolo in protocolos">
+                        <tr ng-repeat="protocolo in protocolos | filter: filterProtocolos(filters.status)">
                             <td>
                                 [[ protocolo.cod_protocolo ]]
                             </td>
