@@ -7,8 +7,12 @@ services.factory('protocolosAPI', ['$http', '$filter',
     function($http, $filter){
         var protocolosAPI = {};
 
-        protocolosAPI.getProtocolos = function getProtocolos() {
-           return _get('protocolos.json');
+        protocolosAPI.getProtocolos = function getProtocolos(cod_protocolo) {
+            var data = {};
+            if (cod_protocolo) {
+                data['cod_protocolo'] = cod_protocolo
+            }
+            return _get('protocolos.json', data);
         };
 
         protocolosAPI.sendStatus = function sendStatus(protocolo_id, status) {
@@ -54,13 +58,13 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
 
     $scope.statusProtocolos = ['NOVO', 'INVALIDO', 'PROCESSADO']
 
-    $scope.loadProtocolos = function loadProtocolos() {
+    $scope.loadProtocolos = function loadProtocolos(cod_protocolo) {
         return protocolosAPI
-                .getProtocolos()
+                .getProtocolos(cod_protocolo)
                 .then(function(response) {
                     $scope.protocolos = response.data.payload;
                 });
-    }
+    };
 
     $scope.sendStatus = function sendStatus(protocolo, status) {
         return protocolosAPI
@@ -68,7 +72,7 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
             .then(function(response) {
                 console.log(response.data);
             });
-    }
+    };
 
     /*var pusher = $pusher(pusherClient),
         protocolos_channel = pusher.subscribe("private-protocolos");
