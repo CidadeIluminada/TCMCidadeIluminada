@@ -62,7 +62,11 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
         return protocolosAPI
                 .getProtocolos(cod_protocolo)
                 .then(function(response) {
-                    $scope.protocolos = response.data.payload;
+                    var protocolos = response.data.payload;
+                    angular.forEach(protocolos, function(protocolo, i){
+                        protocolo._status = protocolo.status;
+                    });
+                    $scope.protocolos = protocolos;
                 });
     };
 

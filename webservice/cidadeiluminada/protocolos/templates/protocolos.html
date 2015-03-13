@@ -118,8 +118,8 @@
                                 [[ protocolo.status ]]
                             </td>
                             <td>
-                                <form name="statusForm" ng-submit="sendStatus(protocolo, pedido._status)">
-                                    <select name="status" ng-model="pedido._status" ng-options="status for status in statusProtocolos">
+                                <form name="statusForm" ng-submit="sendStatus(protocolo, protocolo._status)">
+                                    <select name="status" ng-model="protocolo._status" ng-options="status for status in statusProtocolos">
                                     </select>
                                     <button type="submit">Mudar</button>
                                 </form>
