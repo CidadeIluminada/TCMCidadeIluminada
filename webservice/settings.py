@@ -14,3 +14,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg'])
 POSTMON_URL = 'http://api.postmon.com.br/v1/cep/'
 
 ASSETS_DEBUG = True
+
+PUSHER_APP_ID = '111236'
+PUSHER_KEY = 'fc395600761a186d792b'
+PUSHER_SECRET = 'e48daff4ba24fdea57ac'

@@ -46,9 +46,9 @@ services.factory('protocolosAPI', ['$http', '$filter',
 
 var protocolosControllers = angular.module('protocolosControllers', ['pusher-angular']);
 
-/*var pusherClient = new Pusher(window.pusherToken, {
+var pusherClient = new Pusher(window.pusherToken, {
     encrypted: true
-})*/
+})
 
 protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filter', '$pusher', 'protocolosAPI',
   function($scope, $filter, $pusher, protocolosAPI) {
@@ -66,13 +66,17 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
         'pesquisa': null,
     }
 
+    $scope.initProtocolo = function initProtocolo(protocolo) {
+        protocolo._status = protocolo.status;
+    }
+
     $scope.loadProtocolos = function loadProtocolos(cod_protocolo) {
         return protocolosAPI
                 .getProtocolos(cod_protocolo)
                 .then(function(response) {
                     var protocolos = response.data.payload;
                     angular.forEach(protocolos, function(protocolo, i){
-                        protocolo._status = protocolo.status;
+                        $scope.initProtocolo(protocolo);
                     });
                     $scope.protocolos = protocolos;
                 });
@@ -104,16 +108,34 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
         $scope.reloadProtocolos($scope.filters);
     }
 
-    /*var pusher = $pusher(pusherClient),
-        protocolos_channel = pusher.subscribe("private-protocolos");
+    var pusher = $pusher(pusherClient),
+        protocolos_channel = pusher.subscribe("cidadeiluminada");
 
-    protocolos_channel.bind('novo-pedido', function(pedido) {
-        pedido.show = false;
-        $scope.protocolos.push(pedido);
-        $scope.notification('Novo pedido', pedido.id_gan || "Antecipação da análise de crédito");
-    });*/
+    protocolos_channel.bind('novo-protocolo', function(protocolo) {
+        $scope.initProtocolo(protocolo);
+        $scope.protocolos.push(protocolo);
+        $scope.notification('Novo protocolo', protocolo.cod_protocolo);
+    });
+
+    protocolos_channel.bind('atualiza-protocolo', function(data) {
+        var id = data['protocolo_id'];
+        angular.forEach($scope.protocolos, function(protocolo, i) {
+            if (protocolo.id == id) {
+                for (var key in data) {
+                    protocolo[key] = data[key];
+                }
+            }
+        });
+    });
+
+    $scope.notification = function(title, body) {
+        if (Notification.permission === "granted") {
+            new Notification(title, {body: body})
+        }
+    }
 
     $scope.loadProtocolos();
+    Notification.requestPermission();
   }
 ]);
 

@@ -10,6 +10,7 @@ from werkzeug import secure_filename
 
 from cidadeiluminada.base import db
 from cidadeiluminada.services import postmon
+from cidadeiluminada.protocolos import signals
 from cidadeiluminada.protocolos.models import Protocolo
 from cidadeiluminada.protocolos.forms import ProtocoloForm
 
@@ -69,6 +70,7 @@ def novo():
         filename_completo = "-".join([str(protocolo.id), agora, filename])
         arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                      filename_completo))
+        signals.novo_protocolo(protocolo)
         return jsonify({'status': 'OK'}), 200
     else:
         return jsonify({
@@ -97,6 +99,9 @@ def status(protocolo_id):
     protocolo = Protocolo.query.filter_by(id=protocolo_id).first_or_404()
     protocolo.status = request.json['status']
     db.session.commit()
+    signals.atualiza_protocolo(protocolo, {
+        'status': protocolo.status,
+    })
     return jsonify({
         'result': 'OK'
     }), 200

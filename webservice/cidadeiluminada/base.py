@@ -6,6 +6,8 @@ from datetime import datetime
 from flask.json import JSONEncoder
 from flask.ext.sqlalchemy import SQLAlchemy
 
+from cidadeiluminada import pusher
+
 db = SQLAlchemy()
 
 
@@ -40,4 +42,5 @@ class AppJSONEncoder(JSONEncoder):
 
 
 def init_app(app):
+    pusher.init_app(app)
     db.init_app(app)
