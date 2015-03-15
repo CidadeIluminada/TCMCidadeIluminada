@@ -31,7 +31,7 @@ def handle_unauthorized():
     if request.method == 'POST':
         abort(403)
     elif request.method == 'GET':
-        return redirect(url_for('auth.login'))
+        return redirect(url_for('auth.login', next=request.path))
 
 bp = Blueprint('auth', __name__, template_folder='templates',
                static_folder='static')
@@ -42,8 +42,7 @@ class LoginForm(Form):
     password = PasswordField('Password', [Required()])
     remember_me = BooleanField('Lembrar de mim')
 
-    def __init__(self, external=False, **kwargs):
-        self.external = external
+    def __init__(self, **kwargs):
         Form.__init__(self, **kwargs)
         self.user = None
 
