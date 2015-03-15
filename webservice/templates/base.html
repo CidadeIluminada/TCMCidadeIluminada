@@ -15,35 +15,30 @@
         {% if current_user and not current_user.is_anonymous() %}
         <header>
             <nav class="navbar navbar-static">
-                <div class="container">
-                    <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="glyphicon glyphicon-chevron-down"></span>
-                    </a>
-                    <div class="nav-collapse collase">
-                        <ul class="nav navbar-nav">
-                            {% for title, _endpoint in menu_items %}
-                            <li>
-                                <a {% if request.endpoint == _endpoint %} class="active" {% endif %} href="{{ url_for(_endpoint) }}">{{ title }}</a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <ul class="nav navbar-right navbar-nav">
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <div style="display: inline; margin-right: 15px;">
-                                        Bem-Vindo <strong>{{ current_user.username }}</strong>
-                                    </div>
-                                    <i class="glyphicon glyphicon-user"></i>
-                                    <i class="glyphicon glyphicon-chevron-down"></i>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ url_for('auth.logout') }}">Sair</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="container nav-collapse">
+                    <ul class="nav navbar-nav">
+                        {% for title, _endpoint in menu_items %}
+                        <li>
+                            <a {% if request.endpoint == _endpoint %} class="active" {% endif %} href="{{ url_for(_endpoint) }}">{{ title }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <ul class="nav navbar-right navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <div style="display: inline; margin-right: 15px;">
+                                    Bem-Vindo <strong>{{ current_user.username }}</strong>
+                                </div>
+                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{ url_for('auth.logout') }}">Sair</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>
