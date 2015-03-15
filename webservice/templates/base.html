@@ -30,13 +30,13 @@
                         <ul class="nav navbar-right navbar-nav">
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <div style="display: inline; margin-right: 15px;">
+                                        Bem-Vindo <strong>{{ current_user.username }}</strong>
+                                    </div>
                                     <i class="glyphicon glyphicon-user"></i>
                                     <i class="glyphicon glyphicon-chevron-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        Bem-Vindo <b>{{ current_user.username }}</b>
-                                    <li class="divider"></li>
                                     <li>
                                         <a href="{{ url_for('auth.logout') }}">Sair</a>
                                     </li>
