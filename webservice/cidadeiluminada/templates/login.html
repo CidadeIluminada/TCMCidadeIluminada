@@ -38,20 +38,7 @@
 
 {% block content %}
 <form method="POST" style="padding-bottom:5px; max-width:400px" class="form-signin">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <div class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert">
-            <span class="glyphicon glyphicon-remove"></span>
-        </button>
-        {% for category, message in messages %}
-            {% if category == 'login_failed' %}
-            <p>{{ message }}</p>
-            {% endif %}
-        {% endfor %}
-        </div>
-      {% endif %}
-    {% endwith %}
+    {{ flash_categories_with_style(['login_failed'], 'danger' ) }}
     <img width="250" style="margin-left:50px" src="{{ url_for('static', filename='logo-ci.png') }}" alt="logo cidade iluminada" />
     <h2 class="form-signin-heading">Entrar</h2>
     {{ form.hidden_tag() }}

@@ -63,7 +63,32 @@ class CadastroForm(Form):
                                                  EqualTo('password')])
 
 
-@bp.route("/cadastro/", methods=['GET', 'POST'])
+@bp.route('/gerenciar/')
+@login_required
+def listar_usuarios():
+    usuarios = User.query.order_by(User.id).all()
+    return render_template('usuarios.html', usuarios=usuarios)
+
+
+@bp.route('/gerenciar/<usuario_id>/', methods=['GET', 'POST'])
+@login_required
+def editar_usuario(usuario_id):
+    usuario = User.query.get_or_404(usuario_id)
+    form = CadastroForm()
+    form.username.process_data(usuario.username)
+    if form.validate_on_submit():
+        usuario.password = form.password.data
+        db.session.commit()
+        flash(u'Usuário editado com sucesso.', 'cadastro_success')
+        return redirect(url_for('.listar_usuarios'))
+    elif request.method == 'POST':
+        for field_messages in form.errors.itervalues():
+            for message in field_messages:
+                flash(message, 'cadastro_failed')
+    return render_template('cadastro.html', form=form, edit=True)
+
+
+@bp.route("/gerenciar/novo/", methods=['GET', 'POST'])
 @login_required
 def cadastro():
     form = CadastroForm()
@@ -72,6 +97,8 @@ def cadastro():
             create_user(form.username.data, form.password.data)
         except IntegrityError:
             flash(u'Usuário já existe', 'cadastro_failed')
+        else:
+            flash(u'Usuário cadastrado com sucesso.', 'cadastro_success')
     elif request.method == 'POST':
         for field_messages in form.errors.itervalues():
             for message in field_messages:
@@ -81,6 +108,9 @@ def cadastro():
 
 @bp.route("/login/", methods=["GET", "POST"])
 def login():
+    success_response = redirect(request.args.get('next') or url_for("index"))
+    if current_user.is_authenticated():
+        return success_response
     username = request.args.get('username')
     form = LoginForm(username=username)
     if form.validate_on_submit():
@@ -88,7 +118,7 @@ def login():
         login_user(user, remember=form.remember_me.data)
         identity_changed.send(current_app._get_current_object(),
                               identity=Identity(user.id))
-        return redirect(request.args.get('next') or url_for("index"))
+        return success_response
     elif request.method == 'POST':
         flash(u'Usuário ou senha inválidos.', 'login_failed')
     return render_template("login.html", form=form)
