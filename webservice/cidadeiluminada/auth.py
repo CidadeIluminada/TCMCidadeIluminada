@@ -4,14 +4,15 @@ from __future__ import absolute_import
 from flask import Blueprint, request, abort, redirect, url_for, \
     render_template, session, current_app, flash
 from flask.ext.login import UserMixin, make_secure_token, LoginManager, \
-    current_user, login_user, logout_user
+    current_user, login_user, logout_user, login_required
 from flask.ext.principal import Principal, Identity, AnonymousIdentity, \
     identity_changed, identity_loaded, RoleNeed, UserNeed, Permission
 from sqlalchemy import Integer, String, ForeignKey
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import relationship
 from flask.ext.wtf import Form
 from wtforms import TextField, PasswordField, BooleanField
-from wtforms.validators import Required
+from wtforms.validators import Required, EqualTo, Length
 
 from cidadeiluminada.base import db, JSONSerializationMixin
 
@@ -38,8 +39,8 @@ bp = Blueprint('auth', __name__, template_folder='templates',
 
 
 class LoginForm(Form):
-    username = TextField('Username', [Required()])
-    password = PasswordField('Password', [Required()])
+    username = TextField(u'Usuário', [Required()])
+    password = PasswordField('Senha', [Required()])
     remember_me = BooleanField('Lembrar de mim')
 
     def __init__(self, **kwargs):
@@ -54,9 +55,28 @@ class LoginForm(Form):
         return self.user is not None
 
 
-@bp.route("/cadastro/")
+class CadastroForm(Form):
+    username = TextField(u'Usuário', [Required()])
+    password = PasswordField('Senha', [Required(), Length(min=6)])
+
+    confirm = PasswordField('Comfirme a senha', [Required(),
+                                                 EqualTo('password')])
+
+
+@bp.route("/cadastro/", methods=['GET', 'POST'])
+@login_required
 def cadastro():
-    return render_template("cadastro.html")
+    form = CadastroForm()
+    if form.validate_on_submit():
+        try:
+            create_user(form.username.data, form.password.data)
+        except IntegrityError:
+            flash(u'Usuário já existe', 'cadastro_failed')
+    elif request.method == 'POST':
+        for field_messages in form.errors.itervalues():
+            for message in field_messages:
+                flash(message, 'cadastro_failed')
+    return render_template("cadastro.html", form=form)
 
 
 @bp.route("/login/", methods=["GET", "POST"])
@@ -85,16 +105,20 @@ def logout():
 
 
 def create_user(username, password, role=None):
-    if not role:
-        role = 'admin'
-    _role = Role.query.filter_by(role=role).first()
-    if not _role:
-        _role = Role(role=role)
-        db.session.add(_role)
+    try:
+        if not role:
+            role = 'admin'
+        _role = Role.query.filter_by(role=role).first()
+        if not _role:
+            _role = Role(role=role)
+            db.session.add(_role)
+            db.session.commit()
+        user = User(username=username, password=password, role=_role)
+        db.session.add(user)
         db.session.commit()
-    user = User(username=username, password=password, role=_role)
-    db.session.add(user)
-    db.session.commit()
+    except IntegrityError:
+        db.session.rollback()
+        raise
     return user
 
 

@@ -1,25 +1,44 @@
 {% extends 'base.html' %}
+{% block title %} Cadastro de usuário {% endblock %}
+
 {% block content %}
-<form class="form-horizontal">
+<form id="cadastro_form" class="container form-horizontal" method="POST">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        {% for category, message in messages %}
+            <ul>
+                {% if category == 'cadastro_failed' %}
+                <li>{{ message }}</li>
+                {% endif %}
+            </ul>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {{ form.hidden_tag() }}
     <fieldset>
         <legend>Cadastro</legend>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="username">Usuário</label>
+            {{ form.username.label(class_='col-md-4 control-label') }}
             <div class="col-md-5">
-                <input id="username" name="username" type="text" placeholder="Nome de usuário" class="form-control input-md" required="">
+                {{ form.username(class_='form-control input-md', required='True') }}
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="password">Senha</label>
+            {{ form.password.label(class_='col-md-4 control-label') }}
             <div class="col-md-5">
-                <input id="password" name="password" type="password" class="form-control input-md" required="">
+                {{ form.password(class_='form-control input-md', required='True') }}
                 <span class="help-block">Mínimo 6 dígitos</span>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="password_confirm">Confirme a senha</label>
+            {{ form.confirm.label(class_='col-md-4 control-label') }}
             <div class="col-md-5">
-                <input id="password_confirm" name="password_confirm" type="password" class="form-control input-md" required="">
+                {{ form.confirm(class_='form-control input-md', required='True') }}
             </div>
         </div>
         <div class="form-group">
@@ -31,4 +50,12 @@
         </div>
     </fieldset>
 </form>
+{% endblock %}
+
+{% block body_tail %}
+<script type="text/javascript">
+    $('#limpar').click(function limpar() {
+        $('#cadastro_form input').val('');
+    });
+</script>
 {% endblock %}
