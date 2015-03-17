@@ -82,14 +82,11 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
                 });
     };
 
-    $scope.reloadPage = function(){window.location.reload();}
-
     $scope.sendStatus = function sendStatus(protocolo, status) {
         return protocolosAPI
             .sendStatus(protocolo.id, status)
             .then(function(response) {
                 console.log(response.data);
-                $scope.reloadPage;
             });
     };
 
