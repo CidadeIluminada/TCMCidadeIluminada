@@ -65,7 +65,7 @@ class CadastroForm(Form):
 
 @bp.route('/gerenciar/')
 @login_required
-def listar_usuarios():
+def gerenciar():
     usuarios = User.query.order_by(User.id).all()
     return render_template('usuarios.html', usuarios=usuarios)
 
@@ -80,7 +80,7 @@ def editar_usuario(usuario_id):
         usuario.password = form.password.data
         db.session.commit()
         flash(u'Usuário editado com sucesso.', 'cadastro_success')
-        return redirect(url_for('.listar_usuarios'))
+        return redirect(url_for('.gerenciar'))
     elif request.method == 'POST':
         for field_messages in form.errors.itervalues():
             for message in field_messages:
@@ -99,6 +99,7 @@ def cadastro():
             flash(u'Usuário já existe', 'cadastro_failed')
         else:
             flash(u'Usuário cadastrado com sucesso.', 'cadastro_success')
+            return redirect(url_for('.gerenciar'))
     elif request.method == 'POST':
         for field_messages in form.errors.itervalues():
             for message in field_messages:

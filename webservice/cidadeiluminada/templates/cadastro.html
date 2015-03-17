@@ -5,7 +5,6 @@
 {% block content %}
 <form id="cadastro_form" class="container form-horizontal" method="POST">
     {{ flash_categories_with_style(['cadastro_failed'], 'danger' ) }}
-    {{ flash_categories_with_style(['cadastro_success'], 'success' ) }}
     {{ form.hidden_tag() }}
     <fieldset>
         <legend>{{ title }}</legend>
