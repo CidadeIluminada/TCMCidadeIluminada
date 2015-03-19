@@ -57,10 +57,10 @@ class LoginForm(Form):
 
 class CadastroForm(Form):
     username = TextField(u'Usuário', [Required()])
-    password = PasswordField('Senha', [Required(), Length(min=6)])
-
+    password = PasswordField('Senha', [Required(),
+                                       Length(min=6, message=u'A senha deve ser no mínimo %(min)d caracteres.')])
     confirm = PasswordField('Comfirme a senha', [Required(),
-                                                 EqualTo('password')])
+                                                 EqualTo('password', message=u'Confirmação deve ser igual à senha.')])
 
 
 @bp.route('/gerenciar/')
