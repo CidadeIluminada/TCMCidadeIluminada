@@ -41,8 +41,7 @@ def lista():
     protocolos_q = Protocolo.query
     cod_protocolo = request.args.get('cod_protocolo')
     if cod_protocolo:
-        protocolos_q = protocolos_q.filter(Protocolo.cod_protocolo
-                                           .like(cod_protocolo + '%'))
+        protocolos_q = protocolos_q.filter_by(cod_protocolo=cod_protocolo)
     protocolos = protocolos_q.order_by(Protocolo.id).all()
     return jsonify(payload=protocolos)
 
