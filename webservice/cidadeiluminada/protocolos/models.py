@@ -15,7 +15,7 @@ class Protocolo(db.Model, JSONSerializationMixin):
     cod_protocolo = Column(String(255))
     status = Column(String(255), default='NOVO')
 
-    timestamp = Column(DateTime, default=datetime.now)
+    timestamp = Column(DateTime, default=datetime.utcnow)
 
     filename = Column(String(255))
 

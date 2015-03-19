@@ -37,7 +37,7 @@ class AppJSONEncoder(JSONEncoder):
         if isinstance(o, JSONSerializationMixin):
             return o.serialize()
         if isinstance(o, datetime):
-            return o.strftime('%Y-%m-%dT%H:%M:%S')
+            return o.strftime('%Y-%m-%dT%H:%M:%SZ')
         return super(AppJSONEncoder, self).default(o)
 
 
