@@ -47,6 +47,9 @@ def menu_items():
 
 @manager.command
 def criar_usuario(username, password, role='admin'):
+    """
+    Cria um usuário com o username e password passados.
+    """
     auth.create_user(username, password, role)
 
 if __name__ == '__main__':
