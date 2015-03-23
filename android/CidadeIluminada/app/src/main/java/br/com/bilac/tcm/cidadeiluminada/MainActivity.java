@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import br.com.bilac.tcm.cidadeiluminada.protocolos.ProtocoloActivity;
+import br.com.bilac.tcm.cidadeiluminada.protocolos.ProtocolosListaActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -41,7 +42,15 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void abrirProtocolo(View view) {
+    public void openProtocoloActivity(View view) {
         startActivity(new Intent(this, ProtocoloActivity.class));
+    }
+
+    public void openListaProtocolosActivity(View view) {
+        startActivity(new Intent(this, ProtocolosListaActivity.class));
+    }
+
+    public void openConfiguracoesActivity(View view) {
+        startActivity(new Intent(this, ConfigureActivity.class));
     }
 }
