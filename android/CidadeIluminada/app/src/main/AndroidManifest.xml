@@ -27,6 +27,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.bilac.tcm.cidadeiluminada.MainActivity" />
         </activity>
+        <activity
+            android:name=".ConfigureActivity"
+            android:label="@string/title_activity_configure"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.bilac.tcm.cidadeiluminada.MainActivity" />
+        </activity>
+        <activity
+            android:name=".protocolos.ProtocolosListaActivity"
+            android:label="@string/title_activity_protocolos_lista"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.bilac.tcm.cidadeiluminada.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
