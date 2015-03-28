@@ -54,9 +54,8 @@
             android:layout_below="@+id/openCameraButton"
             android:layout_alignStart="@+id/openCameraButton"
             android:layout_alignEnd="@+id/openCameraButton"
-            android:layout_alignLeft="@+id/openCameraButton"
-            android:layout_alignRight="@+id/openCameraButton"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -147,7 +146,7 @@
             android:layout_alignBaseline="@+id/numeroProtocoloLabel"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="@dimen/protocoloEnderecoFieldsMargin"
-            android:inputType="text"
-            android:hint="59" />
+            android:hint="59"
+            android:inputType="number" />
     </RelativeLayout>
 </ScrollView>

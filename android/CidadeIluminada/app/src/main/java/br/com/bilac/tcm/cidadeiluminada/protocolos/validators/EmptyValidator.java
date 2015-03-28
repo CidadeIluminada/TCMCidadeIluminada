@@ -8,8 +8,8 @@ import android.widget.TextView;
 public class EmptyValidator extends TextValidatorBase {
     private static final String message = "Campo não pode ser vazio";
 
-    public EmptyValidator(TextView textView) {
-        super(textView, message);
+    public EmptyValidator(TextView textView, ValidationState validationState) {
+        super(textView, message, validationState);
     }
 
     @Override

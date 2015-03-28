@@ -12,9 +12,12 @@ public abstract class TextValidatorBase implements TextWatcher {
     private TextView textView;
     private String errorMessage;
 
-    public TextValidatorBase(TextView textView, String errorMessage) {
+    private ValidationState validationState;
+
+    public TextValidatorBase(TextView textView, String errorMessage, ValidationState validationState) {
         this.textView = textView;
         this.errorMessage = errorMessage;
+        this.validationState = validationState;
     }
 
     @Override
@@ -33,6 +36,7 @@ public abstract class TextValidatorBase implements TextWatcher {
         } else {
             textView.setError(null);
         }
+        validationState.setValid(result);
     }
 
     public abstract boolean validate(String text);

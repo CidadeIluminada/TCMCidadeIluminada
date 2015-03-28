@@ -23,23 +23,33 @@ import java.util.Date;
 import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
+import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.ValidationState;
 
 public class ProtocoloActivity extends ActionBarActivity {
 
     private Uri fileUri;
 
+    private ValidationState descricaoValidationState;
+    private ValidationState cepValidationState;
+    private ValidationState numeroValidationState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        descricaoValidationState = new ValidationState();
+        cepValidationState = new ValidationState();
+        numeroValidationState = new ValidationState();
+
         setContentView(R.layout.activity_protocolo);
         EditText descricaoEditText = (EditText) findViewById(R.id.protocoloDescricaoEditText);
-        descricaoEditText.addTextChangedListener(new EmptyValidator(descricaoEditText));
+        descricaoEditText.addTextChangedListener(new EmptyValidator(descricaoEditText, descricaoValidationState));
 
         EditText cepEditText = (EditText) findViewById(R.id.cepEditText);
-        cepEditText.addTextChangedListener(new EmptyValidator(cepEditText));
+        cepEditText.addTextChangedListener(new EmptyValidator(cepEditText, cepValidationState));
 
         EditText numeroEditText = (EditText) findViewById(R.id.numeroEditText);
-        numeroEditText.addTextChangedListener(new EmptyValidator(numeroEditText));
+        numeroEditText.addTextChangedListener(new EmptyValidator(numeroEditText, numeroValidationState));
     }
 
     @Override
@@ -66,7 +76,8 @@ public class ProtocoloActivity extends ActionBarActivity {
     }
 
     private void enviarNovoProtocolo() {
-        if (false) {
+        if (descricaoValidationState.isValid() && numeroValidationState.isValid()
+                && cepValidationState.isValid()) {
             Toast.makeText(this, "Enviando protocolo", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Existem erros no formulário", Toast.LENGTH_SHORT).show();
