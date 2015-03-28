@@ -16,4 +16,5 @@
     <string name="openSettingsLabel">Configurações</string>
     <string name="protocoloNumeroLabel">Número</string>
     <string name="novoProtocoloActionLabel">Novo Protocolo</string>
+    <string name="openCameraButtonContentDescription">Tirar foto</string>
 </resources>
