@@ -67,7 +67,7 @@ public class ProtocoloActivity extends ActionBarActivity {
             if (resultCode == RESULT_OK) {
                 ImageButton img = (ImageButton) findViewById(R.id.openCameraButton);
                 Bitmap bmp = decodeSampledBitmapFromFile(fileUri.getPath(), img.getWidth(),
-                                                         img.getHeight());
+                        img.getHeight());
                 img.setImageBitmap(bmp);
             }
         }

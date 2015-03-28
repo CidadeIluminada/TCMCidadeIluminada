@@ -15,4 +15,5 @@
     <string name="openProtocolosListLabel">Consultar Protocolos</string>
     <string name="openSettingsLabel">Configurações</string>
     <string name="protocoloNumeroLabel">Número</string>
+    <string name="novoProtocoloActionLabel">Novo Protocolo</string>
 </resources>
