@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:21.0.2'
+    compile files('/home/arthur/code/TCMCidadeIluminada/android/CidadeIluminada/unirest-java-1.4.6-SNAPSHOT-withDependency-ShadedForAndroid.jar')
 }
