@@ -23,10 +23,11 @@ def create_app(config=None):
 
 app = create_app()
 migrate = Migrate(app, db)
+_port = app.config['SERVER_PORT']
 
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
-manager.add_command('runserver', Server())
+manager.add_command('runserver', Server(port=_port))
 
 
 @app.route('/')
