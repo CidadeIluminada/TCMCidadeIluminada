@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -20,6 +22,7 @@ import java.util.Date;
 
 import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
+import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
 
 public class ProtocoloActivity extends ActionBarActivity {
 
@@ -29,6 +32,14 @@ public class ProtocoloActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_protocolo);
+        EditText descricaoEditText = (EditText) findViewById(R.id.protocoloDescricaoEditText);
+        descricaoEditText.addTextChangedListener(new EmptyValidator(descricaoEditText));
+
+        EditText cepEditText = (EditText) findViewById(R.id.cepEditText);
+        cepEditText.addTextChangedListener(new EmptyValidator(cepEditText));
+
+        EditText numeroEditText = (EditText) findViewById(R.id.numeroEditText);
+        numeroEditText.addTextChangedListener(new EmptyValidator(numeroEditText));
     }
 
     @Override
@@ -44,15 +55,22 @@ public class ProtocoloActivity extends ActionBarActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                return true;
+            case R.id.action_novo_protocolo:
+                enviarNovoProtocolo();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void enviarNovoProtocolo() {
+        if (false) {
+            Toast.makeText(this, "Enviando protocolo", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Existem erros no formulário", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void openProtocoloCamera(View view) {
