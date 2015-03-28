@@ -8,12 +8,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.ImageButton;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -56,7 +54,7 @@ public class ProtocoloActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void abrirCamera(View view) {
+    public void openProtocoloCamera(View view) {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         fileUri = getOutputMediaFileUri();
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
@@ -67,7 +65,7 @@ public class ProtocoloActivity extends ActionBarActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                ImageView img = (ImageView) findViewById(R.id.imageView);
+                ImageButton img = (ImageButton) findViewById(R.id.openCameraButton);
                 Bitmap bmp = decodeSampledBitmapFromFile(fileUri.getPath(), img.getWidth(),
                                                          img.getHeight());
                 img.setImageBitmap(bmp);

@@ -6,4 +6,10 @@
     <string name="title_activity_protocolo">Novo protocolo</string>
     <string name="title_activity_configure">ConfigureActivity</string>
     <string name="title_activity_protocolos_lista">ProtocolosListaActivity</string>
+    <string name="descricaoProtocoloLabel">Descrição</string>
+    <string name="openGalleryButtonLabel">Galeria</string>
+    <string name="protocoloAddressSectionLabel">Endereço</string>
+    <string name="protocoloCEPLabel">CEP</string>
+    <string name="protocoloBairroLabel">Bairro</string>
+    <string name="protocoloRuaLabel">Rua</string>
 </resources>
