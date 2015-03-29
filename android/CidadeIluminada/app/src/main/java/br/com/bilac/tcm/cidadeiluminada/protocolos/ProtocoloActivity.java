@@ -32,6 +32,8 @@ import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.models.Protocolo;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.services.FetchAddressIntentService;
+import br.com.bilac.tcm.cidadeiluminada.protocolos.services.ProtocolosServices;
+import br.com.bilac.tcm.cidadeiluminada.protocolos.services.utils.APIResponse;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.ValidationState;
 
@@ -158,19 +160,18 @@ public class ProtocoloActivity extends ActionBarActivity implements
 
     private void enviarNovoProtocolo() {
         if (descricaoValidationState.isValid() && numeroValidationState.isValid()
-                && cepValidationState.isValid()) {
+                && cepValidationState.isValid() && fileUri != null) {
             Protocolo protocolo =
                     Protocolo.novoProtocoloSJC(cepEditText.getText().toString(),
                             bairroEditText.getText().toString(), ruaEditText.getText().toString(),
                             numeroEditText.getText().toString());
-            /*
+
             File foto = new File(fileUri.getPath());
-            ProtocolosServices.EnviarNovoProtocolo(foto, protocolo.getCep(),
+            APIResponse response = ProtocolosServices.EnviarNovoProtocolo(foto, protocolo.getCep(),
                     protocolo.getNumero(), descricaoEditText.getText().toString());
-            }*/
             long novoId = protocolo.save();
             Log.d("novoProtocolo", "Novo id de protocolo=" + novoId);
-            Toast.makeText(this, "Enviando protocolo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Existem erros no formulário", Toast.LENGTH_SHORT).show();
         }
