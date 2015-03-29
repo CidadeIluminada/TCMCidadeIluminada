@@ -8,6 +8,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.PersistableBundle;
 import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -81,6 +82,16 @@ public class ProtocoloActivity extends ActionBarActivity implements
     private AddressResultReceiver addressResultReceiver;
 
     @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        fileUri = savedInstanceState.getParcelable("PHOTO_URI");
+        if (fileUri != null) {
+            setCameraButtonImage();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -123,6 +134,7 @@ public class ProtocoloActivity extends ActionBarActivity implements
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable("PHOTO_URI", fileUri);
         super.onSaveInstanceState(outState);
     }
 
@@ -185,12 +197,15 @@ public class ProtocoloActivity extends ActionBarActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                ImageButton img = (ImageButton) findViewById(R.id.openCameraButton);
-                Bitmap bmp = decodeSampledBitmapFromFile(fileUri.getPath(), img.getWidth(),
-                        img.getHeight());
-                img.setImageBitmap(bmp);
+                setCameraButtonImage();
             }
         }
+    }
+
+    private void setCameraButtonImage() {
+        ImageButton img = (ImageButton) findViewById(R.id.openCameraButton);
+        Bitmap bmp = decodeSampledBitmapFromFile(fileUri.getPath(), 128, 128);
+        img.setImageBitmap(bmp);
     }
 
     private Bitmap decodeSampledBitmapFromFile(String path, int requiredWidth, int requiredHeight) {
