@@ -3,6 +3,7 @@ package br.com.bilac.tcm.cidadeiluminada.protocolos;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
@@ -59,11 +60,18 @@ public class ProtocoloActivity extends ActionBarActivity implements
 
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
-            String result = resultData.getString(Constants.RESULT_DATA_KEY);
             if (resultCode == Constants.SUCESS_RESULT) {
-                showToast(result);
+                Address address = resultData.getParcelable(Constants.RESULT_DATA_KEY);
+                fillAddressFields(address);
             }
         }
+    }
+
+    private void fillAddressFields(Address address) {
+        cepEditText.setText(address.getPostalCode());
+        bairroEditText.setText(address.getSubLocality());
+        ruaEditText.setText(address.getThoroughfare());
+        numeroEditText.setText(address.getSubThoroughfare());
     }
 
     public void showToast(String message) {
