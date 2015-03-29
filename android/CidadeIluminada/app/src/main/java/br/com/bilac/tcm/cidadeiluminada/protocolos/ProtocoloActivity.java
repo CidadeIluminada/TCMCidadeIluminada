@@ -22,11 +22,8 @@ import java.util.Date;
 
 import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
-<<<<<<< HEAD
 import br.com.bilac.tcm.cidadeiluminada.protocolos.services.ProtocolosServices;
-=======
 import br.com.bilac.tcm.cidadeiluminada.protocolos.models.Protocolo;
->>>>>>> master
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.ValidationState;
 
