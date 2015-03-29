@@ -3,8 +3,11 @@ package br.com.bilac.tcm.cidadeiluminada.protocolos;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,18 +19,23 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
-import br.com.bilac.tcm.cidadeiluminada.protocolos.services.ProtocolosServices;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.models.Protocolo;
+import br.com.bilac.tcm.cidadeiluminada.protocolos.services.FetchAddressIntentService;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.ValidationState;
 
-public class ProtocoloActivity extends ActionBarActivity {
+public class ProtocoloActivity extends ActionBarActivity implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private Uri fileUri;
 
@@ -40,9 +48,37 @@ public class ProtocoloActivity extends ActionBarActivity {
     private EditText ruaEditText;
     private EditText numeroEditText;
 
+    private GoogleApiClient googleApiClient;
+    private Location lastLocation;
+
+    private class AddressResultReceiver extends ResultReceiver {
+
+        private AddressResultReceiver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            String result = resultData.getString(Constants.RESULT_DATA_KEY);
+            if (resultCode == Constants.SUCESS_RESULT) {
+                showToast(result);
+            }
+        }
+    }
+
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    private AddressResultReceiver addressResultReceiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        buildGoogleApiClient();
+        googleApiClient.connect();
+        addressResultReceiver = new AddressResultReceiver(new Handler());
 
         descricaoValidationState = new ValidationState();
         cepValidationState = new ValidationState();
@@ -60,6 +96,21 @@ public class ProtocoloActivity extends ActionBarActivity {
         cepEditText.addTextChangedListener(new EmptyValidator(cepEditText, cepValidationState));
         numeroEditText.addTextChangedListener(new EmptyValidator(numeroEditText,
                 numeroValidationState));
+    }
+
+    protected synchronized void buildGoogleApiClient() {
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+    }
+
+    private void startIntentService() {
+        Intent intent = new Intent(this, FetchAddressIntentService.class);
+        intent.putExtra(Constants.RECEIVER, addressResultReceiver);
+        intent.putExtra(Constants.LOCATION_DATA_EXTRA, lastLocation);
+        startService(intent);
     }
 
     @Override
@@ -83,6 +134,12 @@ public class ProtocoloActivity extends ActionBarActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        googleApiClient.disconnect();
     }
 
     private void enviarNovoProtocolo() {
@@ -163,5 +220,26 @@ public class ProtocoloActivity extends ActionBarActivity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         return Uri.fromFile(new File(mediaStorageDir.getPath() +
                             File.separator + "IMG_"+ timeStamp + ".jpg"));
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (lastLocation != null) {
+            Log.d("onconnected", "lat=" + lastLocation.getLatitude() + " lon=" + lastLocation.getLongitude());
+            startIntentService();
+        } else {
+            Log.d("onconnected", "location null");
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.d("connectionFailed", "Google API connection Failed: " + connectionResult.toString());
     }
 }
