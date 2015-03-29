@@ -22,7 +22,11 @@ import java.util.Date;
 
 import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
+<<<<<<< HEAD
 import br.com.bilac.tcm.cidadeiluminada.protocolos.services.ProtocolosServices;
+=======
+import br.com.bilac.tcm.cidadeiluminada.protocolos.models.Protocolo;
+>>>>>>> master
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.ValidationState;
 
@@ -35,6 +39,8 @@ public class ProtocoloActivity extends ActionBarActivity {
     private ValidationState numeroValidationState;
     private EditText descricaoEditText;
     private EditText cepEditText;
+    private EditText bairroEditText;
+    private EditText ruaEditText;
     private EditText numeroEditText;
 
     @Override
@@ -45,12 +51,18 @@ public class ProtocoloActivity extends ActionBarActivity {
         cepValidationState = new ValidationState();
         numeroValidationState = new ValidationState();
         setContentView(R.layout.activity_protocolo);
+
         descricaoEditText = (EditText) findViewById(R.id.protocoloDescricaoEditText);
-        descricaoEditText.addTextChangedListener(new EmptyValidator(descricaoEditText, descricaoValidationState));
         cepEditText = (EditText) findViewById(R.id.cepEditText);
-        cepEditText.addTextChangedListener(new EmptyValidator(cepEditText, cepValidationState));
+        bairroEditText = (EditText) findViewById(R.id.bairroEditText);
+        ruaEditText = (EditText) findViewById(R.id.ruaEditText);
         numeroEditText = (EditText) findViewById(R.id.numeroEditText);
-        numeroEditText.addTextChangedListener(new EmptyValidator(numeroEditText, numeroValidationState));
+
+        descricaoEditText.addTextChangedListener(new EmptyValidator(descricaoEditText,
+                descricaoValidationState));
+        cepEditText.addTextChangedListener(new EmptyValidator(cepEditText, cepValidationState));
+        numeroEditText.addTextChangedListener(new EmptyValidator(numeroEditText,
+                numeroValidationState));
     }
 
     @Override
@@ -79,10 +91,17 @@ public class ProtocoloActivity extends ActionBarActivity {
     private void enviarNovoProtocolo() {
         if (descricaoValidationState.isValid() && numeroValidationState.isValid()
                 && cepValidationState.isValid()) {
+            Protocolo protocolo =
+                    Protocolo.novoProtocoloSJC(cepEditText.getText().toString(),
+                            bairroEditText.getText().toString(), ruaEditText.getText().toString(),
+                            numeroEditText.getText().toString());
+            /*
             File foto = new File(fileUri.getPath());
-
-            ProtocolosServices.EnviarNovoProtocolo(foto, cepEditText.getText().toString(),
-                    numeroEditText.getText().toString(), descricaoEditText.getText().toString());
+            ProtocolosServices.EnviarNovoProtocolo(foto, protocolo.getCep(),
+                    protocolo.getNumero(), descricaoEditText.getText().toString());
+            }*/
+            long novoId = protocolo.save();
+            Log.d("novoProtocolo", "Novo id de protocolo=" + novoId);
             Toast.makeText(this, "Enviando protocolo", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Existem erros no formulário", Toast.LENGTH_SHORT).show();
