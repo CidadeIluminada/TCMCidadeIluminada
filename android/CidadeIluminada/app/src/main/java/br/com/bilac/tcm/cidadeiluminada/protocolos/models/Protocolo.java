@@ -34,4 +34,12 @@ public class Protocolo extends SugarRecord {
     public static Protocolo novoProtocoloSJC(String cep, String bairro, String logradouro, String numero) {
         return new Protocolo(cep, "SP", "Sâo José dos Campos", bairro, logradouro, numero);
     }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
 }

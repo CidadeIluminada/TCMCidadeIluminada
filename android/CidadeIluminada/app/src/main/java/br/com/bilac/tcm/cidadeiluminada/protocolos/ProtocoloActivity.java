@@ -22,7 +22,11 @@ import java.util.Date;
 
 import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
+<<<<<<< HEAD
+import br.com.bilac.tcm.cidadeiluminada.protocolos.services.ProtocolosServices;
+=======
 import br.com.bilac.tcm.cidadeiluminada.protocolos.models.Protocolo;
+>>>>>>> master
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.ValidationState;
 
@@ -91,6 +95,11 @@ public class ProtocoloActivity extends ActionBarActivity {
                     Protocolo.novoProtocoloSJC(cepEditText.getText().toString(),
                             bairroEditText.getText().toString(), ruaEditText.getText().toString(),
                             numeroEditText.getText().toString());
+            /*
+            File foto = new File(fileUri.getPath());
+            ProtocolosServices.EnviarNovoProtocolo(foto, protocolo.getCep(),
+                    protocolo.getNumero(), descricaoEditText.getText().toString());
+            }*/
             long novoId = protocolo.save();
             Log.d("novoProtocolo", "Novo id de protocolo=" + novoId);
             Toast.makeText(this, "Enviando protocolo", Toast.LENGTH_SHORT).show();
