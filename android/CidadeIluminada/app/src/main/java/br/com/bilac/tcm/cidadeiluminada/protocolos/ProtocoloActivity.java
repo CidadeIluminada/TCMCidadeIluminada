@@ -32,6 +32,9 @@ public class ProtocoloActivity extends ActionBarActivity {
     private ValidationState descricaoValidationState;
     private ValidationState cepValidationState;
     private ValidationState numeroValidationState;
+    private EditText descricaoEditText;
+    private EditText cepEditText;
+    private EditText numeroEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +43,12 @@ public class ProtocoloActivity extends ActionBarActivity {
         descricaoValidationState = new ValidationState();
         cepValidationState = new ValidationState();
         numeroValidationState = new ValidationState();
-
         setContentView(R.layout.activity_protocolo);
-        EditText descricaoEditText = (EditText) findViewById(R.id.protocoloDescricaoEditText);
+        descricaoEditText = (EditText) findViewById(R.id.protocoloDescricaoEditText);
         descricaoEditText.addTextChangedListener(new EmptyValidator(descricaoEditText, descricaoValidationState));
-
-        EditText cepEditText = (EditText) findViewById(R.id.cepEditText);
+        cepEditText = (EditText) findViewById(R.id.cepEditText);
         cepEditText.addTextChangedListener(new EmptyValidator(cepEditText, cepValidationState));
-
-        EditText numeroEditText = (EditText) findViewById(R.id.numeroEditText);
+        numeroEditText = (EditText) findViewById(R.id.numeroEditText);
         numeroEditText.addTextChangedListener(new EmptyValidator(numeroEditText, numeroValidationState));
     }
 
