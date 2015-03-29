@@ -8,7 +8,6 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.os.ResultReceiver;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -72,11 +71,6 @@ public class ProtocoloActivity extends ActionBarActivity implements
         cepEditText.setText(address.getPostalCode());
         bairroEditText.setText(address.getSubLocality());
         ruaEditText.setText(address.getThoroughfare());
-        numeroEditText.setText(address.getSubThoroughfare());
-    }
-
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
     private AddressResultReceiver addressResultReceiver;
@@ -198,6 +192,9 @@ public class ProtocoloActivity extends ActionBarActivity implements
         if (requestCode == Constants.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 setCameraButtonImage();
+            } else if (resultCode == RESULT_CANCELED) {
+                ImageButton img = (ImageButton) findViewById(R.id.openCameraButton);
+                img.setImageDrawable(getResources().getDrawable(R.drawable.cameraadd128));
             }
         }
     }
@@ -211,7 +208,6 @@ public class ProtocoloActivity extends ActionBarActivity implements
     private Bitmap decodeSampledBitmapFromFile(String path, int requiredWidth, int requiredHeight) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(path, options);
         final int height = options.outHeight;
         final int width = options.outWidth;
         options.inPreferredConfig = Bitmap.Config.RGB_565;
