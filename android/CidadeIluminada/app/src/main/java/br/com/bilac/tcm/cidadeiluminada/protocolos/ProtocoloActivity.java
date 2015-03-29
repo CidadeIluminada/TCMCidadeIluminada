@@ -22,6 +22,7 @@ import java.util.Date;
 
 import br.com.bilac.tcm.cidadeiluminada.Constants;
 import br.com.bilac.tcm.cidadeiluminada.R;
+import br.com.bilac.tcm.cidadeiluminada.protocolos.services.ProtocolosServices;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.EmptyValidator;
 import br.com.bilac.tcm.cidadeiluminada.protocolos.validators.ValidationState;
 
@@ -78,6 +79,10 @@ public class ProtocoloActivity extends ActionBarActivity {
     private void enviarNovoProtocolo() {
         if (descricaoValidationState.isValid() && numeroValidationState.isValid()
                 && cepValidationState.isValid()) {
+            File foto = new File(fileUri.getPath());
+
+            ProtocolosServices.EnviarNovoProtocolo(foto, cepEditText.getText().toString(),
+                    numeroEditText.getText().toString(), descricaoEditText.getText().toString());
             Toast.makeText(this, "Enviando protocolo", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Existem erros no formulário", Toast.LENGTH_SHORT).show();
