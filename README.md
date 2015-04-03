@@ -20,7 +20,7 @@ O mais importante para se alterar é a chave `SQLALCHEMY_DATABASE_URI`. Onde voc
 
 ### Rodando o webservice
 
-Na pasta do webservice digite 
+Na pasta do webservice digite
 
 ```
 $ python manage.py
@@ -49,11 +49,9 @@ python manage.py runserver
 
 Agora acesse [http://localhost:5003](http://localhost:5003) para acessar o webservice.
 
-## Instalação do aplicativo Android
+## Aplicativo Android
 
-Abrindo o Android Studio, clique em **File>Open** e selecione a pasta **TCMCidadeIluminada>android>Cidadeiluminada** e clique OK.
-
-Tente compilar e instale os SDKs necessários (SDK 21).
+O aplicativo foi movido para o [novo repositório](https://github.com/HardDiskD/TCMCidadeIluminada-Android).
 
 ## Trabalhando com o git
 

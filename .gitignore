@@ -79,6 +79,6 @@ proguard/
 *.sublime-*
 *.db
 
-*/tmp/*
+tmp
 .webassets-cache
-webservice/instance
+instance
