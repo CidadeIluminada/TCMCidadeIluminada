@@ -47,7 +47,7 @@ Para ativar o servidor digite
 python manage.py runserver
 ```
 
-Agora acesse [http://localhost:5003](http://localhost:5003) para acessar o webservice.
+Agora acesse [http://localhost:5000](http://localhost:5000) para acessar o webservice.
 
 ## Aplicativo Android
 
