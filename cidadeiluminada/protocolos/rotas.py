@@ -70,7 +70,10 @@ def novo():
         arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                      filename_completo))
         signals.novo_protocolo(protocolo)
-        return jsonify({'status': 'OK'}), 200
+        return jsonify({
+            'status': 'OK',
+            'cod_protocolo': protocolo.cod_protocolo,
+        }), 200
     else:
         return jsonify({
             'status': 'ERROR',
