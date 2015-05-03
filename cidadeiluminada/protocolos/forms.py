@@ -1,6 +1,7 @@
 # coding: UTF-8
 from __future__ import absolute_import
 import os
+import re
 
 from flask import current_app
 from flask.ext.wtf import Form
@@ -11,13 +12,19 @@ from wtforms_sqlalchemy.orm import model_form
 
 from cidadeiluminada.protocolos.models import Protocolo
 
+
+def validate_cep(form, field):
+    cep_re = re.compile(r'\b\d{5}-?\d{3}\b')
+    if not cep_re.match(field.data):
+        raise ValidationError(u'CEP inválido')
+
 _protocolos_fields_args = {
     'cod_protocolo': {
         'validators': [Required()],
         'label': u'Código Protocolo',
     },
     'cep': {
-        'validators': [Required()],
+        'validators': [Required(), validate_cep],
         'label': u'CEP',
     },
     'email': {
