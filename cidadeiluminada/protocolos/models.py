@@ -33,3 +33,6 @@ class Protocolo(db.Model, JSONSerializationMixin):
 
     def has_full_address(self):
         return self.estado and self.cidade and self.bairro and self.logradouro
+
+    nome = Column(String(255))
+    email = Column(String(255))

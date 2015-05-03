@@ -56,7 +56,8 @@ def novo():
                               cep=form.cep.data, filename=filename,
                               logradouro=form.logradouro.data,
                               cidade=form.cidade.data, bairro=form.bairro.data,
-                              numero=form.numero.data, estado=form.estado.data)
+                              numero=form.numero.data, estado=form.estado.data,
+                              nome=form.nome.data, email=form.email.data)
         if not protocolo.has_full_address():
             endereco = postmon.get_by_cep(protocolo.cep)
             protocolo.estado = endereco['estado']

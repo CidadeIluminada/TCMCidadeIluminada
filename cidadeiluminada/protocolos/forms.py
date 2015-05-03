@@ -4,7 +4,7 @@ from __future__ import absolute_import
 from flask import current_app
 from flask.ext.wtf import Form
 from wtforms.fields import FileField
-from wtforms.validators import Required
+from wtforms.validators import Required, Email
 from wtforms_sqlalchemy.orm import model_form
 
 from cidadeiluminada.protocolos.models import Protocolo
@@ -15,6 +15,9 @@ _protocolos_fields_args = {
     },
     'cep': {
         'validators': [Required()],
+    },
+    'email': {
+        'validators': [Email()],
     }
 }
 
