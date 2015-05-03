@@ -85,7 +85,8 @@ def novo():
 @bp.route('/novo/form/')
 @login_required
 def novo_pagina():
-    return render_template('novo.html')
+    form = ProtocoloForm()
+    return render_template('novo.html', form=form)
 
 
 @bp.route('/<protocolo_id>/foto/')

@@ -5,41 +5,17 @@
 <title>Novo protocolo</title>
 <div class="container">
   <h1>Novo protocolo</h1>
-  <form role="form" action="{{ url_for('.novo') }}" method="POST" enctype="multipart/form-data">
+  <form action="{{ url_for('.novo') }}" method="POST" enctype="multipart/form-data">
+     {% for field in form %}
      <div class="form-group">
-        <label for="cod_protocolo">Código protocolo</label><br />
-        <input type="text" name="cod_protocolo">
+         {{ field.label }}<br/>
+         {% if field.id == 'filename' %}
+         {% else %}
+            {{ field }}
+         {% endif %}
      </div>
-     <div class="form-group">
-        <label for="inputfile">Entrada Arquivo</label>
-        <input type="file" name="arquivo_protocolo">
-        <p class="help-block">Tamanho maximo do arquivo.</p>
-     </div>
-     <div class="form-group">
-        <label for="cep">CEP</label><br />
-        <input type="text" name="cep">
-     </div>
-     <div class="form-group">
-        <label for="estado">Estado</label><br />
-        <input type="text" name="estado" minlength="2" maxlength="2">
-     </div>
-     <div class="form-group">
-        <label for="cidade">Cidade</label><br />
-        <input type="text" name="cidade">
-     </div>
-     <div class="form-group">
-        <label for="bairro">Bairro</label><br />
-        <input type="text" name="bairro">
-     </div>
-     <div class="form-group">
-        <label for="logradouro">Logradouro</label><br />
-        <input type="text" name="logradouro">
-     </div>
-     <div class="form-group">
-        <label for="numero">Numero</label><br />
-        <input type="text" name="numero">
-     </div>
-     <button type="submit" value="Upload" class="btn btn-primary">Salvar</button>
+     {% endfor %}
+     <button type="submit" class="btn btn-primary">Salvar</button>
   </form>
 </div>
 {% endblock %}

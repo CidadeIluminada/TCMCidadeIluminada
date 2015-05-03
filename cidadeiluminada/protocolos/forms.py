@@ -12,12 +12,33 @@ from cidadeiluminada.protocolos.models import Protocolo
 _protocolos_fields_args = {
     'cod_protocolo': {
         'validators': [Required()],
+        'label': u'Código Protocolo',
     },
     'cep': {
         'validators': [Required()],
+        'label': u'CEP',
     },
     'email': {
         'validators': [Email()],
+        'label': u'E-mail',
+    },
+    'estado': {
+        'label': u'UF',
+    },
+    'cidade': {
+        'label': u'Cidade',
+    },
+    'bairro': {
+        'label': u'Bairro',
+    },
+    'logradouro': {
+        'label': u'Logradouro',
+    },
+    'numero': {
+        'label': u'Número',
+    },
+    'nome': {
+        'label': u'Nome',
     }
 }
 
