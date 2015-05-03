@@ -42,7 +42,7 @@ def lista():
     cod_protocolo = request.args.get('cod_protocolo')
     if cod_protocolo:
         protocolos_q = protocolos_q.filter_by(cod_protocolo=cod_protocolo)
-    protocolos = protocolos_q.order_by(Protocolo.id).all()
+    protocolos = protocolos_q.order_by(Protocolo.id.desc()).all()
     return jsonify(payload=protocolos)
 
 
@@ -53,11 +53,11 @@ def novo():
         arquivo = form.arquivo_protocolo.data
         filename = secure_filename(arquivo.filename)
         protocolo = Protocolo(cod_protocolo=form.cod_protocolo.data,
-                              cep=form.cep.data, filename=filename,
+                              cep=form.cep.data,  email=form.email.data,
                               logradouro=form.logradouro.data,
                               cidade=form.cidade.data, bairro=form.bairro.data,
                               numero=form.numero.data, estado=form.estado.data,
-                              nome=form.nome.data, email=form.email.data)
+                              nome=form.nome.data)
         if not protocolo.has_full_address():
             endereco = postmon.get_by_cep(protocolo.cep)
             protocolo.estado = endereco['estado']
@@ -70,6 +70,8 @@ def novo():
         filename_completo = "-".join([str(protocolo.id), agora, filename])
         arquivo.save(os.path.join(current_app.config['UPLOAD_FOLDER'],
                      filename_completo))
+        protocolo.filename = filename_completo
+        db.session.commit()
         signals.novo_protocolo(protocolo)
         return jsonify({
             'status': 'OK',

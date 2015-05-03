@@ -29,7 +29,7 @@ _protocolos_fields_args = {
         'validators': [Optional()]
     },
     'estado': {
-        'validators': [Length(min=2, max=2)],
+        'validators': [Optional(), Length(min=2, max=2)],
         'label': u'UF',
     },
     'cidade': {
@@ -55,7 +55,7 @@ class ProtocoloForm(_ProtocoloForm):
 
     def validate_arquivo_protocolo(self, field):
         filename = field.data.filename
-        allowed_filename = os.path.splitext(filename) in \
+        allowed_filename = os.path.splitext(filename)[1] in \
             current_app.config['ALLOWED_EXTENSIONS']
         if not allowed_filename:
             raise ValidationError(u'Arquivo inválido')
