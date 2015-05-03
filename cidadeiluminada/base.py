@@ -4,6 +4,7 @@ from __future__ import absolute_import
 from datetime import datetime
 
 from flask.json import JSONEncoder
+from flask.ext.migrate import Migrate
 from flask.ext.sqlalchemy import SQLAlchemy
 
 from cidadeiluminada import pusher
@@ -42,5 +43,6 @@ class AppJSONEncoder(JSONEncoder):
 
 
 def init_app(app):
-    pusher.init_app(app)
     db.init_app(app)
+    Migrate(app, db)
+    pusher.init_app(app)

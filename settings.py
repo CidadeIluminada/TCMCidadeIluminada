@@ -2,7 +2,6 @@
 import os
 
 DEBUG = True
-SERVER_PORT = 5000
 
 CSRF_ENABLED = True
 SECRET_KEY = 'dontcare'
