@@ -9,7 +9,7 @@ from flask.ext.login import current_user
 def emit(event, data, channel='cidadeiluminada'):
     pusher = current_app.extensions["pusher"]
     try:
-        pusher[channel].trigger(event, data)
+        pusher.trigger(channel, event, data)
     except:
         current_app.logger \
             .exception(u"Falha no envio de mensagem para o Pusher. {}-{}-{}"
