@@ -14,7 +14,8 @@ def create_app(config=None):
     app.config.from_object('settings')
     app.config.from_pyfile('settings_local.py', silent=True)
     app.json_encoder = AppJSONEncoder
-    app.secret_key = app.config.get('SECRET_KEY')
+
+    app.config.setdefault('SQLALCHEMY_DATABASE_URI', 'postgresql+psycopg2://cidadeiluminada:cidadeiluminada@localhost/cidadeiluminada')
 
     if config:
         app.config.update(config)
