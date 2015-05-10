@@ -27,6 +27,7 @@ def setup():
     deploy()
     with cd(CIDADEILUMINADA_WORK_PATH), virtualenv(CIDADEILUMINADA_WORK_PATH):
         sudo('python manage.py ci criar_usuario admin 123456')
+        sudo('uwsgi --socket :8080 --module="cidadeiluminada:create_app()" --touch-reload="/root/uwsgi_file"')
 
 
 def deploy():
@@ -40,8 +41,4 @@ def deploy():
 
 
 def reload():
-    print u'Reload ainda não está funcionando direito :('
-    return
-    sudo('pgrep uwsgi | xargs kill', warn_only=True)
-    with cd(CIDADEILUMINADA_WORK_PATH), virtualenv(CIDADEILUMINADA_WORK_PATH):
-        sudo('uwsgi --socket :8080 --module="cidadeiluminada:create_app()"')
+    sudo('touch /root/uwsgi_file')
