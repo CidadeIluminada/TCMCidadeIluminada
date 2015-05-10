@@ -113,7 +113,7 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
 
     protocolos_channel.bind('novo-protocolo', function(protocolo) {
         $scope.initProtocolo(protocolo);
-        $scope.protocolos.push(protocolo);
+        $scope.protocolos.unshift(protocolo);
         $scope.notification('Novo protocolo', protocolo.cod_protocolo);
     });
 
