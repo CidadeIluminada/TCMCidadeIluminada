@@ -73,9 +73,13 @@ def novo():
         protocolo.filename = filename_completo
         db.session.commit()
         signals.novo_protocolo(protocolo)
+        protocolo_response = {
+            'cod_protocolo': protocolo.cod_protocolo,
+            'status': protocolo.status,
+        }
         return jsonify({
             'status': 'OK',
-            'cod_protocolo': protocolo.cod_protocolo,
+            'protocolo': protocolo_response,
         }), 200
     else:
         return jsonify({
