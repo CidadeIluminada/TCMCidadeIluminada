@@ -14,7 +14,7 @@ from cidadeiluminada.protocolos.models import Protocolo
 
 
 def validate_cep(form, field):
-    cep_re = re.compile(r'\b\d{5}-?\d{3}\b')
+    cep_re = re.compile(r'^\d{5}-?\d{3}$')
     if not cep_re.match(field.data):
         raise ValidationError(u'CEP inválido')
 
