@@ -32,7 +32,11 @@ def index():
 def buscar_cod_protocolo():
     cod_protocolo = request.args['cod_protocolo']
     protocolo = Protocolo.query.filter_by(cod_protocolo=cod_protocolo).first()
-    return jsonify(payload=protocolo)
+    response = {
+        'status': 'OK',
+        'protocolo': protocolo
+    }
+    return jsonify(response), 200
 
 
 @bp.route('/protocolos.json')
@@ -43,7 +47,11 @@ def lista():
     if cod_protocolo:
         protocolos_q = protocolos_q.filter_by(cod_protocolo=cod_protocolo)
     protocolos = protocolos_q.order_by(Protocolo.id.desc()).all()
-    return jsonify(payload=protocolos)
+    response = {
+        'status': 'OK',
+        'protocolos': protocolos
+    }
+    return jsonify(response), 200
 
 
 @bp.route('/novo/', methods=['POST'])
@@ -113,5 +121,8 @@ def status(protocolo_id):
         'status': protocolo.status,
     })
     return jsonify({
-        'result': 'OK'
+        'status': 'OK',
+        'protocolo': {
+            'status': protocolo.status,
+        }
     }), 200
