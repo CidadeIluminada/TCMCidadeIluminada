@@ -74,7 +74,7 @@ protocolosControllers.controller('ProtocolosListaController', ['$scope', '$filte
         return protocolosAPI
                 .getProtocolos(cod_protocolo)
                 .then(function(response) {
-                    var protocolos = response.data.payload;
+                    var protocolos = response.data.protocolos;
                     angular.forEach(protocolos, function(protocolo, i){
                         $scope.initProtocolo(protocolo);
                     });
