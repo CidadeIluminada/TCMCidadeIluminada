@@ -58,9 +58,17 @@ def lista():
 def novo():
     form = ProtocoloForm(csrf_enabled=False)
     if form.validate():
+        cod_protocolo_recebido = form.cod_protocolo.data
+        protocolo_existente = Protocolo.query \
+            .filter_by(cod_protocolo=cod_protocolo_recebido).first()
+        if protocolo_existente:
+            return jsonify({
+                'status': 'OK',
+                'protocolo': protocolo_existente
+            })
         arquivo = form.arquivo_protocolo.data
         filename = secure_filename(arquivo.filename)
-        protocolo = Protocolo(cod_protocolo=form.cod_protocolo.data,
+        protocolo = Protocolo(cod_protocolo=cod_protocolo_recebido,
                               cep=form.cep.data,  email=form.email.data,
                               logradouro=form.logradouro.data,
                               cidade=form.cidade.data, bairro=form.bairro.data,
