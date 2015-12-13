@@ -10,7 +10,6 @@ from cidadeiluminada.base import AppJSONEncoder
 
 def create_app(config=None):
     app = Flask(__name__, instance_relative_config=True)
-    Environment(app)
     app.config.from_object('settings')
     app.config.from_pyfile('settings_local.py', silent=True)
     app.json_encoder = AppJSONEncoder
@@ -20,6 +19,7 @@ def create_app(config=None):
     if config:
         app.config.update(config)
 
+    Environment(app)
     base.init_app(app)
     auth.init_app(app)
     protocolos.init_app(app)
